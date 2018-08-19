@@ -81,7 +81,8 @@ namespace Skywalker
         /// <param name="gameTime">Provides a snapshot of timing values.</param>
         protected override void Draw(GameTime gameTime)
         {
-            GraphicsDevice.Clear(Color.CornflowerBlue);
+            GraphicsDevice.Clear(Color.Lerp(Color.OliveDrab, Color.Gainsboro, .5f));
+            //GraphicsDevice.Clear(Color.OliveDrab);
 
             // TODO: Add your drawing code here
 
