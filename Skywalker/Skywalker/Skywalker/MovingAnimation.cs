@@ -17,7 +17,7 @@ namespace Skywalker
             this.speed = speed;
             this.frames = frames;
         }
-        public void Update(GameTime gameTime)
+        public override void Update(GameTime gameTime)
         {
             base.Update(gameTime);
         }

@@ -15,7 +15,8 @@ namespace Skywalker
             UpSlice,
             Block,
             IdleLeft,
-            IdleRight
+            IdleRight,
+            Starting
         }
 
     }

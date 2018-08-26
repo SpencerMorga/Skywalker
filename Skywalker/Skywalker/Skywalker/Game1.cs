@@ -18,7 +18,7 @@ namespace Skywalker
     {
         GraphicsDeviceManager graphics;
         SpriteBatch spriteBatch;
-
+        SkywalkerStuff TheForce;
         public Game1()
         {
             graphics = new GraphicsDeviceManager(this);
@@ -46,7 +46,7 @@ namespace Skywalker
         {
             // Create a new SpriteBatch, which can be used to draw textures.
             spriteBatch = new SpriteBatch(GraphicsDevice);
-
+            TheForce = new SkywalkerStuff(Content.Load<Texture2D>("skywalker"), new Vector2(50, 50), new Vector2(3), Color.White, new List<Frame>());
             // TODO: use this.Content to load your game content here
         }
 
@@ -67,10 +67,9 @@ namespace Skywalker
         protected override void Update(GameTime gameTime)
         {
             // Allows the game to exit
-            if (GamePad.GetState(PlayerIndex.One).Buttons.Back == ButtonState.Pressed)
-                this.Exit();
+            
 
-            // TODO: Add your update logic here
+            TheForce.Update(gameTime, Keyboard.GetState());
 
             base.Update(gameTime);
         }
@@ -81,9 +80,11 @@ namespace Skywalker
         /// <param name="gameTime">Provides a snapshot of timing values.</param>
         protected override void Draw(GameTime gameTime)
         {
-            GraphicsDevice.Clear(Color.Lerp(Color.OliveDrab, Color.Gainsboro, .5f));
+            GraphicsDevice.Clear(Color.CornflowerBlue); //Color.Lerp(Color.OliveDrab, Color.Gainsboro, .5f));
             //GraphicsDevice.Clear(Color.OliveDrab);
-
+            spriteBatch.Begin();
+            TheForce.Draw(spriteBatch);
+            spriteBatch.End();
             // TODO: Add your drawing code here
 
             base.Draw(gameTime);

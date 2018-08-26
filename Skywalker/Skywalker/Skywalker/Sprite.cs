@@ -13,17 +13,19 @@ namespace Skywalker
         public Vector2 position;
         public Color color;
         public Rectangle sourceRectangle;
+        public Vector2 Origin;
 
-        public Sprite (Texture2D image, Vector2 position, Color color)
+        public Sprite(Texture2D image, Vector2 position, Color color)
         {
             this.image = image;
             this.position = position;
             this.color = color;
         }
 
-        public void Draw (SpriteBatch spritebatch)
+        public void Draw(SpriteBatch spritebatch)
         {
-            spritebatch.Draw(image, position, color);
+            
+            spritebatch.Draw(image, position, sourceRectangle, color, 0, Origin, Vector2.One, SpriteEffects.None, 0);
         }
     }
 }
