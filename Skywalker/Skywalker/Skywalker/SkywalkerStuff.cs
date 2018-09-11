@@ -6,7 +6,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 
-namespace Skywalker
+namespace Saiyuki_VS_Skywalker
 {
     public class SkywalkerStuff : MovingAnimation
     {
@@ -49,30 +49,30 @@ namespace Skywalker
 
             List<Frame> RunRight = new List<Frame>()
             {
-                new Frame(new Rectangle(202, 40, 18, 32), new Vector2()),
-                new Frame(new Rectangle(242, 40, 20, 31), new Vector2()),
-                new Frame(new Rectangle(285, 40, 12, 32), new Vector2()),
-                new Frame(new Rectangle(324, 40, 14, 32), new Vector2()),
-                new Frame(new Rectangle(361, 41, 21, 30), new Vector2()),
-                new Frame(new Rectangle(202, 80, 19, 32), new Vector2()),
-                new Frame(new Rectangle(244, 80, 14, 31), new Vector2()),
-                new Frame(new Rectangle(284, 80, 15, 31), new Vector2()),
-                new Frame(new Rectangle(321, 81, 20, 30), new Vector2()),
+                new Frame(new Rectangle(202, 40, 18, 32), BottomLeft (18, 32)),
+                new Frame(new Rectangle(242, 40, 20, 31), BottomLeft(20, 31)),
+                new Frame(new Rectangle(285, 40, 12, 32), BottomLeft(12, 32)),
+                new Frame(new Rectangle(324, 40, 14, 32), BottomLeft(14, 32)),
+                new Frame(new Rectangle(361, 41, 21, 30), BottomLeft(21, 30)),
+                new Frame(new Rectangle(202, 80, 19, 32), BottomLeft(19, 32)),
+                new Frame(new Rectangle(244, 80, 14, 31), BottomLeft(14, 31)),
+                new Frame(new Rectangle(284, 80, 15, 31), BottomLeft(15, 31)),
+                new Frame(new Rectangle(321, 81, 20, 30), BottomLeft(20, 30)),
             };
             animations = new Dictionary<SkywalkerEnums.SkyFrames, List<Frame>>();
             animations.Add(SkywalkerEnums.SkyFrames.RunRight, RunRight);
 
             List<Frame> RunLeft = new List<Frame>()
             {
-                new Frame(new Rectangle(162, 40, 18, 32), new Vector2()),
-                new Frame(new Rectangle(121, 40, 19, 31), new Vector2()),
-                new Frame(new Rectangle(85, 40, 12, 32), new Vector2()),
-                new Frame(new Rectangle(44, 40, 14, 32), new Vector2()),
-                new Frame(new Rectangle(0, 41, 21, 30), new Vector2()),
-                new Frame(new Rectangle(161, 80, 19, 32), new Vector2()),
-                new Frame(new Rectangle(124, 80, 14, 31), new Vector2()),
-                new Frame(new Rectangle(83, 80, 15, 31), new Vector2()),
-                new Frame(new Rectangle(41, 81, 20, 30), new Vector2()),
+                new Frame(new Rectangle(162, 40, 18, 32),BottomLeft(18, 32)),
+                new Frame(new Rectangle(121, 40, 19, 31),BottomLeft(19, 31)),
+                new Frame(new Rectangle(85, 40, 12, 32), BottomLeft(12, 32)),
+                new Frame(new Rectangle(44, 40, 14, 32), BottomLeft(14, 32)),
+                new Frame(new Rectangle(0, 41, 21, 30),  BottomLeft(21, 30)),
+                new Frame(new Rectangle(161, 80, 19, 32),BottomLeft(19, 32)),
+                new Frame(new Rectangle(124, 80, 14, 31),BottomLeft(14, 31)),
+                new Frame(new Rectangle(83, 80, 15, 31), BottomLeft(15, 31)),
+                new Frame(new Rectangle(41, 81, 20, 30), BottomLeft(20, 30)),
             };
             animations.Add(SkywalkerEnums.SkyFrames.RunLeft, RunLeft);
 
@@ -111,27 +111,58 @@ namespace Skywalker
 
             List<Frame> IdleRight = new List<Frame>()
             {
-                new Frame(new Rectangle(321, 196, 21, 39), new Vector2()),
+                new Frame(new Rectangle(321, 196, 21, 39), BottomLeft(21, 39)),
             };
             animations.Add(SkywalkerEnums.SkyFrames.IdleRight, IdleRight);
 
             List<Frame> IdleLeft = new List<Frame>()
             {
-                new Frame(new Rectangle(40, 196, 21, 39), new Vector2()),
+                new Frame(new Rectangle(40, 196, 21, 39), BottomLeft(21, 39)),
             };
             animations.Add(SkywalkerEnums.SkyFrames.IdleLeft, IdleLeft);
 
             List<Frame> Block = new List<Frame>()
             {
-                new Frame(new Rectangle(204, 274, 15, 43), new Vector2()),
+                new Frame(new Rectangle(204, 274, 15, 43), BottomLeft(15, 43)),
             };
             animations.Add(SkywalkerEnums.SkyFrames.Block, Block);
+
+            List<Frame> DownSliceLeft = new List<Frame>()
+            {
+                new Frame(new Rectangle(163, 274, 15, 43), BottomLeft(15, 43)),
+                new Frame(new Rectangle(121, 274, 19, 44), BottomLeft(19, 44)),
+                new Frame(new Rectangle(76, 275, 30, 41), BottomLeft(30, 41)),
+                new Frame(new Rectangle(32, 277, 38, 38), BottomLeft(38, 38)),
+                new Frame(new Rectangle(114, 320, 33, 32), BottomLeft(33, 32)),
+                new Frame(new Rectangle(153, 320, 35, 32), BottomLeft(35, 32)),
+            };
+            animations.Add(SkywalkerEnums.SkyFrames.DownSliceLeft, DownSliceLeft);
+
+            List<Frame> UpSliceLeft = new List<Frame>()
+            {
+                new Frame(new Rectangle(162, 240, 18, 31), BottomLeft(18, 31)),
+                new Frame(new Rectangle(115, 241, 32, 30), BottomLeft(32, 30)),
+                new Frame(new Rectangle(75, 241, 32, 30), BottomLeft(32, 30)),
+                new Frame(new Rectangle(32, 277, 38, 38), BottomLeft(38, 38)),
+                new Frame(new Rectangle(76, 275, 30, 41), BottomLeft(30, 41)),
+                new Frame(new Rectangle(121, 274, 19, 44), BottomLeft(19, 44)),
+                new Frame(new Rectangle(163, 274, 15, 43), BottomLeft(15, 43)),
+            };
+            animations.Add(SkywalkerEnums.SkyFrames.UpSliceLeft, UpSliceLeft);
+
+            List<Frame> BlockLeft = new List<Frame>()
+            {
+                new Frame(new Rectangle(163, 274, 15, 43), BottomLeft(15, 43)),
+            };
+            animations.Add(SkywalkerEnums.SkyFrames.BlockLeft, BlockLeft);
         }
 
         public void Update(GameTime gTime, KeyboardState hi)
         {
             frames = animations[currentFrameState];
+
             /////////////////////////////////////////////////////////////
+
             if (currentFrameState == SkywalkerEnums.SkyFrames.RunRight)
             {
                 if (currentframeIndex + 1 >= frames.Count)
@@ -144,7 +175,9 @@ namespace Skywalker
                 currentFrameState = SkywalkerEnums.SkyFrames.RunRight;
                 position.X += speed.X;
             }
+
             /////////////////////////////////////////////////////////////
+
             if (currentFrameState == SkywalkerEnums.SkyFrames.RunLeft)
             {
                 if (currentframeIndex + 1 >= frames.Count)
@@ -157,7 +190,9 @@ namespace Skywalker
                 currentFrameState = SkywalkerEnums.SkyFrames.RunLeft;
                 position.X -= speed.X;
             }
+
             /////////////////////////////////////////////////////////////
+
             if (currentFrameState == SkywalkerEnums.SkyFrames.UpSlice)
             {
                 if (currentframeIndex + 1 >= frames.Count)
@@ -165,11 +200,13 @@ namespace Skywalker
                     currentFrameState = SkywalkerEnums.SkyFrames.IdleRight;
                 }
             }
-            if (hi.IsKeyDown(Keys.S))
+            if (hi.IsKeyDown(Keys.Y))
             {
                 currentFrameState = SkywalkerEnums.SkyFrames.UpSlice;
             }
+
             /////////////////////////////////////////////////////////////
+
             if (currentFrameState == SkywalkerEnums.SkyFrames.DownSlice)
             {
                 if (currentframeIndex + 1 >= frames.Count)
@@ -177,14 +214,69 @@ namespace Skywalker
                     currentFrameState = SkywalkerEnums.SkyFrames.IdleRight;
                 }
             }
-            if (hi.IsKeyDown(Keys.Space))
+            if (hi.IsKeyDown(Keys.U))
             {
                 currentFrameState = SkywalkerEnums.SkyFrames.DownSlice;
             }
+
             /////////////////////////////////////////////////////////////
 
-            base.Update(gTime);
+            if (currentFrameState == SkywalkerEnums.SkyFrames.Block)
+            {
+                if (currentframeIndex + 1 >= frames.Count)
+                {
+                    currentFrameState = SkywalkerEnums.SkyFrames.IdleRight;
+                }
+            }
+            if (hi.IsKeyDown(Keys.E))
+            {
+                currentFrameState = SkywalkerEnums.SkyFrames.Block;
+            }
 
+            /////////////////////////////////////////////////////////////
+
+            if (currentFrameState == SkywalkerEnums.SkyFrames.DownSliceLeft)
+            {
+                if (currentframeIndex + 1 >= frames.Count)
+                {
+                    currentFrameState = SkywalkerEnums.SkyFrames.IdleLeft;
+                }
+            }
+            if (hi.IsKeyDown(Keys.T))
+            {
+                currentFrameState = SkywalkerEnums.SkyFrames.DownSliceLeft;
+            }
+
+            /////////////////////////////////////////////////////////////
+
+            if (currentFrameState == SkywalkerEnums.SkyFrames.UpSliceLeft)
+            {
+                if (currentframeIndex + 1 >= frames.Count)
+                {
+                    currentFrameState = SkywalkerEnums.SkyFrames.IdleLeft;
+                }
+            }
+            if (hi.IsKeyDown(Keys.R))
+            {
+                currentFrameState = SkywalkerEnums.SkyFrames.UpSliceLeft;
+            }
+
+            /////////////////////////////////////////////////////////////
+
+            if (currentFrameState == SkywalkerEnums.SkyFrames.BlockLeft)
+            {
+                if (currentframeIndex +1 >= frames.Count)
+                {
+                    currentFrameState = SkywalkerEnums.SkyFrames.IdleLeft;
+                }
+            }
+            if (hi.IsKeyDown(Keys.Q))
+            {
+                currentFrameState = SkywalkerEnums.SkyFrames.BlockLeft;
+            }
+
+            base.Update(gTime);
+         
 
 
         }

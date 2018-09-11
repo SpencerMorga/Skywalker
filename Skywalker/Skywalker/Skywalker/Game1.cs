@@ -9,7 +9,7 @@ using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
 using Microsoft.Xna.Framework.Media;
 
-namespace Skywalker
+namespace Saiyuki_VS_Skywalker
 {
     /// <summary>
     /// This is the main type for your game
@@ -46,7 +46,7 @@ namespace Skywalker
         {
             // Create a new SpriteBatch, which can be used to draw textures.
             spriteBatch = new SpriteBatch(GraphicsDevice);
-            TheForce = new SkywalkerStuff(Content.Load<Texture2D>("skywalker"), new Vector2(50, 50), new Vector2(3), Color.White, new List<Frame>());
+            TheForce = new SkywalkerStuff(Content.Load<Texture2D>("skywalker"), new Vector2(500, 300), new Vector2(3), Color.White, new List<Frame>());
             // TODO: use this.Content to load your game content here
         }
 
@@ -80,7 +80,7 @@ namespace Skywalker
         /// <param name="gameTime">Provides a snapshot of timing values.</param>
         protected override void Draw(GameTime gameTime)
         {
-            GraphicsDevice.Clear(Color.CornflowerBlue); //Color.Lerp(Color.OliveDrab, Color.Gainsboro, .5f));
+            GraphicsDevice.Clear(Color.Lerp(Color.Gainsboro, Color.DarkSlateBlue, .5f));
             //GraphicsDevice.Clear(Color.OliveDrab);
             spriteBatch.Begin();
             TheForce.Draw(spriteBatch);

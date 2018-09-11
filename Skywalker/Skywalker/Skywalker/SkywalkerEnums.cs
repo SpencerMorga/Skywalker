@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 
-namespace Skywalker
+namespace Saiyuki_VS_Skywalker
 {
     public static class SkywalkerEnums
     {
@@ -16,7 +16,10 @@ namespace Skywalker
             Block,
             IdleLeft,
             IdleRight,
-            Starting
+            Starting,
+            UpSliceLeft,
+            DownSliceLeft,
+            BlockLeft
         }
 
     }

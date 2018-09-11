@@ -1,6 +1,6 @@
 using System;
 
-namespace Skywalker
+namespace Saiyuki_VS_Skywalker
 {
 #if WINDOWS || XBOX
     static class Program
