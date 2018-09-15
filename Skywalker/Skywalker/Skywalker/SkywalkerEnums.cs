@@ -19,7 +19,9 @@ namespace Saiyuki_VS_Skywalker
             Starting,
             UpSliceLeft,
             DownSliceLeft,
-            BlockLeft
+            BlockLeft,
+            JumpRight,
+            JumpLeft
         }
 
     }

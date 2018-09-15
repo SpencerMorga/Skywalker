@@ -28,6 +28,14 @@ namespace Saiyuki_VS_Skywalker
             }
         }
 
+        Vector2 initialvelocity;
+        public Vector2 Velocity { get; private set; }
+        bool isJumping = false;
+        float gravity = 0.4f;
+        bool PastFloor
+        {
+            get { return }
+        }
         private Vector2 BottomCenter(int width, int height)
         {
             return new Vector2(width / 2, height);
@@ -155,13 +163,29 @@ namespace Saiyuki_VS_Skywalker
                 new Frame(new Rectangle(163, 274, 15, 43), BottomLeft(15, 43)),
             };
             animations.Add(SkywalkerEnums.SkyFrames.BlockLeft, BlockLeft);
+
+            List<Frame> JumpRight = new List<Frame>()
+            {
+                new Frame(new Rectangle(200, 121, 23, 30), BottomLeft(23, 30)),
+                new Frame(new Rectangle(246, 122, 11, 27), BottomLeft(11, 27)),
+                new Frame(new Rectangle(285, 120, 13, 30), BottomLeft(13, 30)),
+                new Frame(new Rectangle(231, 120, 21, 32), BottomLeft(21, 32)),
+                new Frame(new Rectangle(364, 121, 14, 29), BottomLeft(14, 29)),
+            };
+            animations.Add(SkywalkerEnums.SkyFrames.JumpRight, JumpRight);
+
+            List<Frame> JumpLeft = new List<Frame>()
+            {
+                new Frame(new Rectangle(159, 121, 23, 30), BottomLeft(23, 30)),
+                new 
+            };
         }
 
         public void Update(GameTime gTime, KeyboardState hi)
         {
             frames = animations[currentFrameState];
 
-            /////////////////////////////////////////////////////////////
+            /////////////////////////////////////////////////////////////1
 
             if (currentFrameState == SkywalkerEnums.SkyFrames.RunRight)
             {
@@ -176,7 +200,7 @@ namespace Saiyuki_VS_Skywalker
                 position.X += speed.X;
             }
 
-            /////////////////////////////////////////////////////////////
+            /////////////////////////////////////////////////////////////2
 
             if (currentFrameState == SkywalkerEnums.SkyFrames.RunLeft)
             {
@@ -191,7 +215,7 @@ namespace Saiyuki_VS_Skywalker
                 position.X -= speed.X;
             }
 
-            /////////////////////////////////////////////////////////////
+            /////////////////////////////////////////////////////////////3
 
             if (currentFrameState == SkywalkerEnums.SkyFrames.UpSlice)
             {
@@ -200,12 +224,12 @@ namespace Saiyuki_VS_Skywalker
                     currentFrameState = SkywalkerEnums.SkyFrames.IdleRight;
                 }
             }
-            if (hi.IsKeyDown(Keys.Y))
+            if (hi.IsKeyDown(Keys.U))
             {
                 currentFrameState = SkywalkerEnums.SkyFrames.UpSlice;
             }
 
-            /////////////////////////////////////////////////////////////
+            /////////////////////////////////////////////////////////////4
 
             if (currentFrameState == SkywalkerEnums.SkyFrames.DownSlice)
             {
@@ -214,12 +238,12 @@ namespace Saiyuki_VS_Skywalker
                     currentFrameState = SkywalkerEnums.SkyFrames.IdleRight;
                 }
             }
-            if (hi.IsKeyDown(Keys.U))
+            if (hi.IsKeyDown(Keys.Y))
             {
                 currentFrameState = SkywalkerEnums.SkyFrames.DownSlice;
             }
 
-            /////////////////////////////////////////////////////////////
+            /////////////////////////////////////////////////////////////5
 
             if (currentFrameState == SkywalkerEnums.SkyFrames.Block)
             {
@@ -233,7 +257,7 @@ namespace Saiyuki_VS_Skywalker
                 currentFrameState = SkywalkerEnums.SkyFrames.Block;
             }
 
-            /////////////////////////////////////////////////////////////
+            /////////////////////////////////////////////////////////////6
 
             if (currentFrameState == SkywalkerEnums.SkyFrames.DownSliceLeft)
             {
@@ -247,7 +271,7 @@ namespace Saiyuki_VS_Skywalker
                 currentFrameState = SkywalkerEnums.SkyFrames.DownSliceLeft;
             }
 
-            /////////////////////////////////////////////////////////////
+            /////////////////////////////////////////////////////////////7
 
             if (currentFrameState == SkywalkerEnums.SkyFrames.UpSliceLeft)
             {
@@ -261,7 +285,7 @@ namespace Saiyuki_VS_Skywalker
                 currentFrameState = SkywalkerEnums.SkyFrames.UpSliceLeft;
             }
 
-            /////////////////////////////////////////////////////////////
+            /////////////////////////////////////////////////////////////8
 
             if (currentFrameState == SkywalkerEnums.SkyFrames.BlockLeft)
             {
@@ -274,6 +298,27 @@ namespace Saiyuki_VS_Skywalker
             {
                 currentFrameState = SkywalkerEnums.SkyFrames.BlockLeft;
             }
+            /////////////////////////////////////////////////////////////9
+            if (currentFrameState == SkywalkerEnums.SkyFrames.JumpRight)
+            {
+                if (currentframeIndex +1 >= frames.Count)
+                {
+                    currentFrameState = SkywalkerEnums.SkyFrames.IdleRight;
+                }
+            }
+            if (hi.IsKeyDown(Keys.W))
+            {
+                currentFrameState = SkywalkerEnums.SkyFrames.JumpRight;
+                
+                isJumping = true;
+            }
+
+            if (isJumping)
+            {
+
+            }
+
+
 
             base.Update(gTime);
          

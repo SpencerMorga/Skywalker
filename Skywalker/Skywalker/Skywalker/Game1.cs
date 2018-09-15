@@ -19,6 +19,7 @@ namespace Saiyuki_VS_Skywalker
         GraphicsDeviceManager graphics;
         SpriteBatch spriteBatch;
         SkywalkerStuff TheForce;
+        SaiyukiStuff MonkeyDude;
         public Game1()
         {
             graphics = new GraphicsDeviceManager(this);
@@ -46,7 +47,8 @@ namespace Saiyuki_VS_Skywalker
         {
             // Create a new SpriteBatch, which can be used to draw textures.
             spriteBatch = new SpriteBatch(GraphicsDevice);
-            TheForce = new SkywalkerStuff(Content.Load<Texture2D>("skywalker"), new Vector2(500, 300), new Vector2(3), Color.White, new List<Frame>());
+            TheForce = new SkywalkerStuff(Content.Load<Texture2D>("skywalker"), new Vector2(600, 300), new Vector2(3), Color.White, new List<Frame>());
+            //MonkeyDude = new SaiyukiStuff(Content.Load<Texture2D>("saiyuki"), new Vector2(500, 300), new Vector2(3), Color.White, new List<Frame>());
             // TODO: use this.Content to load your game content here
         }
 
@@ -80,10 +82,11 @@ namespace Saiyuki_VS_Skywalker
         /// <param name="gameTime">Provides a snapshot of timing values.</param>
         protected override void Draw(GameTime gameTime)
         {
-            GraphicsDevice.Clear(Color.Lerp(Color.Gainsboro, Color.DarkSlateBlue, .5f));
+            GraphicsDevice.Clear(Color.Lerp(Color.Gainsboro, Color.DarkSlateBlue, .2f));
             //GraphicsDevice.Clear(Color.OliveDrab);
             spriteBatch.Begin();
             TheForce.Draw(spriteBatch);
+            //MonkeyDude.Draw(spriteBatch);
             spriteBatch.End();
             // TODO: Add your drawing code here
 
