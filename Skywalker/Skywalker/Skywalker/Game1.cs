@@ -19,11 +19,17 @@ namespace Saiyuki_VS_Skywalker
         GraphicsDeviceManager graphics;
         SpriteBatch spriteBatch;
         SkywalkerStuff TheForce;
-        SaiyukiStuff MonkeyDude;
+        Ryu MonkeyDude;
+        
+        public static Viewport Viewport { get { return temp; } }
+        private static Viewport temp;
+
         public Game1()
         {
             graphics = new GraphicsDeviceManager(this);
             Content.RootDirectory = "Content";
+
+        
         }
 
         /// <summary>
@@ -35,7 +41,7 @@ namespace Saiyuki_VS_Skywalker
         protected override void Initialize()
         {
             // TODO: Add your initialization logic here
-
+            
             base.Initialize();
         }
 
@@ -47,6 +53,7 @@ namespace Saiyuki_VS_Skywalker
         {
             // Create a new SpriteBatch, which can be used to draw textures.
             spriteBatch = new SpriteBatch(GraphicsDevice);
+            temp = GraphicsDevice.Viewport;
             TheForce = new SkywalkerStuff(Content.Load<Texture2D>("skywalker"), new Vector2(600, 300), new Vector2(3), Color.White, new List<Frame>());
             //MonkeyDude = new SaiyukiStuff(Content.Load<Texture2D>("saiyuki"), new Vector2(500, 300), new Vector2(3), Color.White, new List<Frame>());
             // TODO: use this.Content to load your game content here

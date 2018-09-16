@@ -9,15 +9,16 @@ namespace Saiyuki_VS_Skywalker
     {
         public enum SaiyukiFrames
         {
-            IdleGuard,
-            StandAttack,
-            UpGuard,
+            Stand,
+            Punch,
+            Kick,
+            WalkForward,
+            WalkBackwards,
+            Crouch,
             Jump,
-            Hurt,
-            UpAttack,
-            DownAttack,
-            Running,
-            RunningAttack
+            JumpPunch,
+            JumpKick,
+            FallGetUp
         }
 
     }
