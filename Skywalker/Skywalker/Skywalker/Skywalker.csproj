@@ -81,7 +81,7 @@
     <Compile Include="Program.cs" />
     <Compile Include="Game1.cs" />
     <Compile Include="SaiyukiEnums.cs" />
-    <Compile Include="SaiyukiStuff.cs" />
+    <Compile Include="Ryu.cs" />
     <Compile Include="SkywalkerEnums.cs" />
     <Compile Include="SkywalkerStuff.cs" />
     <Compile Include="Sprite.cs" />

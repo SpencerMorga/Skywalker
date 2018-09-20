@@ -55,7 +55,7 @@ namespace Saiyuki_VS_Skywalker
             spriteBatch = new SpriteBatch(GraphicsDevice);
             temp = GraphicsDevice.Viewport;
             TheForce = new SkywalkerStuff(Content.Load<Texture2D>("skywalker"), new Vector2(600, 300), new Vector2(3), Color.White, new List<Frame>());
-            //MonkeyDude = new SaiyukiStuff(Content.Load<Texture2D>("saiyuki"), new Vector2(500, 300), new Vector2(3), Color.White, new List<Frame>());
+            MonkeyDude = new Ryu(Content.Load<Texture2D>("ryu"), new Vector2(200, 390), new Vector2(3), Color.White, new List<Frame>());
             // TODO: use this.Content to load your game content here
         }
 
@@ -79,7 +79,7 @@ namespace Saiyuki_VS_Skywalker
             
 
             TheForce.Update(gameTime, Keyboard.GetState());
-
+            MonkeyDude.Update(gameTime, Keyboard.GetState());
             base.Update(gameTime);
         }
 
@@ -93,7 +93,7 @@ namespace Saiyuki_VS_Skywalker
             //GraphicsDevice.Clear(Color.OliveDrab);
             spriteBatch.Begin();
             TheForce.Draw(spriteBatch);
-            //MonkeyDude.Draw(spriteBatch);
+            MonkeyDude.Draw(spriteBatch);
             spriteBatch.End();
             // TODO: Add your drawing code here
 
