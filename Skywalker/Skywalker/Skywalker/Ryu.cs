@@ -30,9 +30,22 @@ namespace Saiyuki_VS_Skywalker
             }
 
         }
+        Vector2 initialvelocity;
+        Vector2 velocity;
+        public Vector2 Velocity { get { return velocity; } }
+        bool isJumping = false;
+        float gravity = 0.05f;
+        
+        bool Pastfloor
+        {
+            get { return position.Y + frames[currentframeIndex].frame.Height > Game1.Viewport2.Height; }
+        }
+
         public Ryu(Texture2D image, Vector2 position, Vector2 speed, Color color, List<Frame> frames)
             : base(image, position, speed, color, frames)
         {
+            initialvelocity = speed;
+
             List<Frame> stand = new List<Frame>()
             {
                 new Frame(new Rectangle(1, 40, 24, 60), new Vector2()),
@@ -93,38 +106,113 @@ namespace Saiyuki_VS_Skywalker
 
             };
             animation2.Add(SaiyukiEnums.SaiyukiFrames.WalkBackwards, backward);
-            /*
-            List<Frame >  = new List<Frame>()
+            
+            List<Frame > crouch = new List<Frame>()
             {
-                new Frame(new Rectangle(), new Vector2()),
+                new Frame(new Rectangle(319, 153, 25, 60), new Vector2()),
+                new Frame(new Rectangle(346, 144, 27, 60), new Vector2()),
+                new Frame(new Rectangle(377, 144, 25, 60), new Vector2()),
+                new Frame(new Rectangle(406, 144, 24, 60), new Vector2()),
             };
-            animation2.Add(SaiyukiEnums.SaiyukiFrames);
-            List<Frame >  = new List<Frame>()
+                
+            animation2.Add(SaiyukiEnums.SaiyukiFrames.Crouch, crouch);
+            List <Frame>  jump= new List<Frame>()
             {
-                new Frame(new Rectangle(), new Vector2()),
-            };
-            animation2.Add(SaiyukiEnums.SaiyukiFrames);
-            List<Frame >  = new List<Frame>()
+                new Frame(new Rectangle(1, 244, 24, 63), new Vector2()),
+                new Frame(new Rectangle(1, 244, 24, 63), new Vector2()),
+                new Frame(new Rectangle(1, 244, 24, 63), new Vector2()),
+                new Frame(new Rectangle(1, 244, 24, 63), new Vector2()),
+                new Frame(new Rectangle(27, 247, 23, 60), new Vector2()),
+                new Frame(new Rectangle(27, 247, 23, 60), new Vector2()),
+                new Frame(new Rectangle(27, 247, 23, 60), new Vector2()),
+                new Frame(new Rectangle(52, 254, 26, 53), new Vector2()),
+                new Frame(new Rectangle(52, 254, 26, 53), new Vector2()),
+             };
+            animation2.Add(SaiyukiEnums.SaiyukiFrames.Jump, jump);
+
+            List<Frame > jumppunch = new List<Frame>()
             {
-                new Frame(new Rectangle(), new Vector2()),
-                new Frame(new Rectangle(), new Vector2()),
-                new Frame(new Rectangle(), new Vector2()),
+                new Frame(new Rectangle(285, 254, 26, 53), new Vector2()),
+                new Frame(new Rectangle(285, 254, 26, 53), new Vector2()),
+                new Frame(new Rectangle(285, 254, 26, 53), new Vector2()),
+                new Frame(new Rectangle(285, 254, 26, 53), new Vector2()),
+                new Frame(new Rectangle(319, 259, 40, 41), new Vector2()),
+                new Frame(new Rectangle(319, 259, 40, 41), new Vector2()),
+                new Frame(new Rectangle(319, 259, 40, 41), new Vector2()),
+                new Frame(new Rectangle(319, 259, 40, 41), new Vector2()),
             };
-            animation2.Add(SaiyukiEnums.SaiyukiFrames);
-            List<Frame >  = new List<Frame>()
+            animation2.Add(SaiyukiEnums.SaiyukiFrames.JumpPunch, jumppunch);
+            List<Frame > jumpkick = new List<Frame>()
             {
-                new Frame(new Rectangle(), new Vector2()),
-                new Frame(new Rectangle(), new Vector2()),
-                new Frame(new Rectangle(), new Vector2()),
+                new Frame(new Rectangle(924, 254, 26, 53), new Vector2()),
+                new Frame(new Rectangle(924, 254, 26, 53), new Vector2()),
+                new Frame(new Rectangle(924, 254, 26, 53), new Vector2()),
+                new Frame(new Rectangle(971 ,254, 50, 42), new Vector2()),
+                new Frame(new Rectangle(971 ,254, 50, 42), new Vector2()),
+                new Frame(new Rectangle(971 ,254, 50, 42), new Vector2()),
+                new Frame(new Rectangle(971 ,254, 50, 42), new Vector2()),
             };
-            animation2.Add(SaiyukiEnums.SaiyukiFrames);
-            */
+            animation2.Add(SaiyukiEnums.SaiyukiFrames.JumpKick, jumpkick);
+            
         }
 
         public void Update(GameTime gtime, KeyboardState ks)
         {
             frames = animation2[currentframestate2];
 
+            if (isJumping)
+            {
+                velocity.Y -= gravity;
+                position.Y -= velocity.Y;
+                if (Pastfloor)
+                {
+                    isJumping = false;
+                }
+
+            }
+         
+            if (currentframestate2 == SaiyukiEnums.SaiyukiFrames.JumpPunch)
+            {
+                if (currentframeIndex + 1 >= frames.Count)
+                {
+                    currentframestate2 = SaiyukiEnums.SaiyukiFrames.Stand;
+                }
+            }
+            if (ks.IsKeyDown(Keys.NumPad9) && !isJumping)
+            {
+                currentframestate2 = SaiyukiEnums.SaiyukiFrames.JumpPunch;
+                velocity = initialvelocity;
+                isJumping = true;
+            }
+
+            if (currentframestate2 == SaiyukiEnums.SaiyukiFrames.Jump)
+            {
+                if (currentframeIndex + 1 >= frames.Count)
+                {
+                    currentframestate2 = SaiyukiEnums.SaiyukiFrames.Stand;
+                }
+            }
+            if (ks.IsKeyDown(Keys.NumPad8) && !isJumping)
+            {
+                currentframestate2 = SaiyukiEnums.SaiyukiFrames.Jump;
+                velocity = initialvelocity;
+                isJumping = true;
+            }
+
+            if (currentframestate2 == SaiyukiEnums.SaiyukiFrames.JumpKick)
+            {
+                if (currentframeIndex + 1 >= frames.Count)
+                {
+                    currentframestate2 = SaiyukiEnums.SaiyukiFrames.Stand;
+                }
+            }
+            if (ks.IsKeyDown(Keys.NumPad7) && !isJumping)
+            {
+                currentframestate2 = SaiyukiEnums.SaiyukiFrames.JumpKick;
+                velocity = initialvelocity;
+                isJumping = true;
+            }
+            //////////////////////////////////////////////////////////////////
             if (currentframestate2 == SaiyukiEnums.SaiyukiFrames.Punch)
             {
                 if (currentframeIndex + 1 >= frames.Count)
@@ -132,11 +220,11 @@ namespace Saiyuki_VS_Skywalker
                     currentframestate2 = SaiyukiEnums.SaiyukiFrames.Stand;
                 }
             }
-            if (ks.IsKeyDown(Keys.Up))
+            if (ks.IsKeyDown(Keys.NumPad5))
             {
                 currentframestate2 = SaiyukiEnums.SaiyukiFrames.Punch;
             }
-        
+
             //////////////////////////////////////////////////////////////////
             if (currentframestate2 == SaiyukiEnums.SaiyukiFrames.Kick)
             {
@@ -145,7 +233,7 @@ namespace Saiyuki_VS_Skywalker
                     currentframestate2 = SaiyukiEnums.SaiyukiFrames.Stand;
                 }
             }
-            if (ks.IsKeyDown(Keys.Down))
+            if (ks.IsKeyDown(Keys.NumPad0))
             {
                 currentframestate2 = SaiyukiEnums.SaiyukiFrames.Kick;
             }
@@ -157,7 +245,7 @@ namespace Saiyuki_VS_Skywalker
                     currentframestate2 = SaiyukiEnums.SaiyukiFrames.Stand;
                 }
             }
-            if (ks.IsKeyDown(Keys.Right))
+            if (ks.IsKeyDown(Keys.NumPad6))
             {
                 currentframestate2 = SaiyukiEnums.SaiyukiFrames.WalkForward;
                 position.X += speed.X;
@@ -171,11 +259,12 @@ namespace Saiyuki_VS_Skywalker
                     currentframestate2 = SaiyukiEnums.SaiyukiFrames.Stand;
                 }
             }
-            if (ks.IsKeyDown(Keys.Left))
+            if (ks.IsKeyDown(Keys.NumPad4))
             {
                 currentframestate2 = SaiyukiEnums.SaiyukiFrames.WalkBackwards;
                 position.X -= speed.X;
             }
+            //////////////////////////////////////////////////////////////////
 
 
 

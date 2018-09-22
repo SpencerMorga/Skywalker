@@ -22,7 +22,9 @@ namespace Saiyuki_VS_Skywalker
         Ryu MonkeyDude;
         
         public static Viewport Viewport { get { return temp; } }
+        public static Viewport Viewport2 { get { return temp; } }
         private static Viewport temp;
+        private static Viewport temp2;
 
         public Game1()
         {
@@ -54,8 +56,9 @@ namespace Saiyuki_VS_Skywalker
             // Create a new SpriteBatch, which can be used to draw textures.
             spriteBatch = new SpriteBatch(GraphicsDevice);
             temp = GraphicsDevice.Viewport;
-            TheForce = new SkywalkerStuff(Content.Load<Texture2D>("skywalker"), new Vector2(600, 300), new Vector2(3), Color.White, new List<Frame>());
-            MonkeyDude = new Ryu(Content.Load<Texture2D>("ryu"), new Vector2(200, 390), new Vector2(3), Color.White, new List<Frame>());
+            temp2 = GraphicsDevice.Viewport;
+            TheForce = new SkywalkerStuff(Content.Load<Texture2D>("skywalker"), new Vector2(600, 550), new Vector2(3), Color.White, new List<Frame>());
+            MonkeyDude = new Ryu(Content.Load<Texture2D>("ryu"), new Vector2(200, 350), new Vector2(3), Color.White, new List<Frame>());
             // TODO: use this.Content to load your game content here
         }
 
@@ -89,7 +92,7 @@ namespace Saiyuki_VS_Skywalker
         /// <param name="gameTime">Provides a snapshot of timing values.</param>
         protected override void Draw(GameTime gameTime)
         {
-            GraphicsDevice.Clear(Color.Lerp(Color.Gainsboro, Color.DarkSlateBlue, .2f));
+            GraphicsDevice.Clear(Color.DarkSeaGreen);
             //GraphicsDevice.Clear(Color.OliveDrab);
             spriteBatch.Begin();
             TheForce.Draw(spriteBatch);

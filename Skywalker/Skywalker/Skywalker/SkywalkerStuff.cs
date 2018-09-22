@@ -32,7 +32,7 @@ namespace Saiyuki_VS_Skywalker
         public Vector2 Velocity { get { return velocity; } }
         Vector2 velocity;
         bool isJumping = false;
-        float gravity = 0.08f;
+        float gravity = 0.03f;
 
         //int pfloor;
         bool PastFloor
@@ -216,6 +216,17 @@ namespace Saiyuki_VS_Skywalker
         {
             frames = animations[currentFrameState];
 
+            if (isJumping)
+            {
+                velocity.Y -= gravity;
+                position.Y -= velocity.Y;
+
+                //pass floor STOP JUMPING
+                if (PastFloor)
+                {
+                    isJumping = false;
+                }
+            }
             if (currentFrameState == SkywalkerEnums.SkyFrames.JumpRight)
             {
                 if (currentframeIndex + 1 >= frames.Count)
@@ -244,17 +255,7 @@ namespace Saiyuki_VS_Skywalker
                 isJumping = true;
             }
 
-            if (isJumping)
-            {
-                velocity.Y -= gravity;
-                position.Y -= velocity.Y;
-
-                //pass floor STOP JUMPING
-                if (PastFloor)
-                {
-                    isJumping = false;
-                }
-            }
+           
             /////////////////////////////////////////////////////////////1
 
             if (currentFrameState == SkywalkerEnums.SkyFrames.RunRight)
