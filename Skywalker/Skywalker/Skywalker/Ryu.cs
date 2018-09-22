@@ -132,10 +132,7 @@ namespace Saiyuki_VS_Skywalker
 
             List<Frame > jumppunch = new List<Frame>()
             {
-                new Frame(new Rectangle(285, 254, 26, 53), new Vector2()),
-                new Frame(new Rectangle(285, 254, 26, 53), new Vector2()),
-                new Frame(new Rectangle(285, 254, 26, 53), new Vector2()),
-                new Frame(new Rectangle(285, 254, 26, 53), new Vector2()),
+
                 new Frame(new Rectangle(319, 259, 40, 41), new Vector2()),
                 new Frame(new Rectangle(319, 259, 40, 41), new Vector2()),
                 new Frame(new Rectangle(319, 259, 40, 41), new Vector2()),
@@ -144,9 +141,7 @@ namespace Saiyuki_VS_Skywalker
             animation2.Add(SaiyukiEnums.SaiyukiFrames.JumpPunch, jumppunch);
             List<Frame > jumpkick = new List<Frame>()
             {
-                new Frame(new Rectangle(924, 254, 26, 53), new Vector2()),
-                new Frame(new Rectangle(924, 254, 26, 53), new Vector2()),
-                new Frame(new Rectangle(924, 254, 26, 53), new Vector2()),
+
                 new Frame(new Rectangle(971 ,254, 50, 42), new Vector2()),
                 new Frame(new Rectangle(971 ,254, 50, 42), new Vector2()),
                 new Frame(new Rectangle(971 ,254, 50, 42), new Vector2()),
@@ -178,11 +173,10 @@ namespace Saiyuki_VS_Skywalker
                     currentframestate2 = SaiyukiEnums.SaiyukiFrames.Stand;
                 }
             }
-            if (ks.IsKeyDown(Keys.NumPad9) && !isJumping)
+            if (ks.IsKeyDown(Keys.NumPad9))
             {
                 currentframestate2 = SaiyukiEnums.SaiyukiFrames.JumpPunch;
-                velocity = initialvelocity;
-                isJumping = true;
+
             }
 
             if (currentframestate2 == SaiyukiEnums.SaiyukiFrames.Jump)
@@ -206,11 +200,10 @@ namespace Saiyuki_VS_Skywalker
                     currentframestate2 = SaiyukiEnums.SaiyukiFrames.Stand;
                 }
             }
-            if (ks.IsKeyDown(Keys.NumPad7) && !isJumping)
+            if (ks.IsKeyDown(Keys.NumPad7))
             {
                 currentframestate2 = SaiyukiEnums.SaiyukiFrames.JumpKick;
-                velocity = initialvelocity;
-                isJumping = true;
+
             }
             //////////////////////////////////////////////////////////////////
             if (currentframestate2 == SaiyukiEnums.SaiyukiFrames.Punch)

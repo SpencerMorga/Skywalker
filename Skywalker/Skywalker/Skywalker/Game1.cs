@@ -20,6 +20,7 @@ namespace Saiyuki_VS_Skywalker
         SpriteBatch spriteBatch;
         SkywalkerStuff TheForce;
         Ryu MonkeyDude;
+        Chun_LiStuff Dumpling;
         
         public static Viewport Viewport { get { return temp; } }
         public static Viewport Viewport2 { get { return temp; } }
@@ -59,6 +60,7 @@ namespace Saiyuki_VS_Skywalker
             temp2 = GraphicsDevice.Viewport;
             TheForce = new SkywalkerStuff(Content.Load<Texture2D>("skywalker"), new Vector2(600, 550), new Vector2(3), Color.White, new List<Frame>());
             MonkeyDude = new Ryu(Content.Load<Texture2D>("ryu"), new Vector2(200, 350), new Vector2(3), Color.White, new List<Frame>());
+            Dumpling = new Chun_LiStuff(Content.Load<Texture2D>("chun-li"), new Vector2(600, 350), new Vector2(3), Color.White, new List<Frame>());
             // TODO: use this.Content to load your game content here
         }
 
@@ -83,6 +85,7 @@ namespace Saiyuki_VS_Skywalker
 
             TheForce.Update(gameTime, Keyboard.GetState());
             MonkeyDude.Update(gameTime, Keyboard.GetState());
+            Dumpling.Update(gameTime, Keyboard.GetState());
             base.Update(gameTime);
         }
 
@@ -92,11 +95,12 @@ namespace Saiyuki_VS_Skywalker
         /// <param name="gameTime">Provides a snapshot of timing values.</param>
         protected override void Draw(GameTime gameTime)
         {
-            GraphicsDevice.Clear(Color.DarkSeaGreen);
+            GraphicsDevice.Clear(Color.White);
             //GraphicsDevice.Clear(Color.OliveDrab);
             spriteBatch.Begin();
             TheForce.Draw(spriteBatch);
             MonkeyDude.Draw(spriteBatch);
+            Dumpling.Draw(spriteBatch);
             spriteBatch.End();
             // TODO: Add your drawing code here
 

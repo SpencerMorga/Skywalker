@@ -11,10 +11,12 @@ namespace Saiyuki_VS_Skywalker
         {
             Stand,
             Punch,
+            Punch2,
             Kick,
+            CrouchKick,
             WalkForward,
             WalkBackward,
-            Crouch,
+            JumpKick,
             Jump
         }
     }
