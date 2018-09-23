@@ -24,8 +24,10 @@ namespace Saiyuki_VS_Skywalker
         
         public static Viewport Viewport { get { return temp; } }
         public static Viewport Viewport2 { get { return temp; } }
+        public static Viewport Viewport3 { get { return temp; } }
         private static Viewport temp;
         private static Viewport temp2;
+        private static Viewport temp3;
 
         public Game1()
         {
@@ -58,6 +60,7 @@ namespace Saiyuki_VS_Skywalker
             spriteBatch = new SpriteBatch(GraphicsDevice);
             temp = GraphicsDevice.Viewport;
             temp2 = GraphicsDevice.Viewport;
+            temp3 = GraphicsDevice.Viewport;
             TheForce = new SkywalkerStuff(Content.Load<Texture2D>("skywalker"), new Vector2(600, 550), new Vector2(3), Color.White, new List<Frame>());
             MonkeyDude = new Ryu(Content.Load<Texture2D>("ryu"), new Vector2(200, 350), new Vector2(3), Color.White, new List<Frame>());
             Dumpling = new Chun_LiStuff(Content.Load<Texture2D>("chun-li"), new Vector2(600, 350), new Vector2(3), Color.White, new List<Frame>());

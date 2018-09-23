@@ -25,6 +25,16 @@ namespace Saiyuki_VS_Skywalker
                 }
             }
         }
+
+        Vector2 initialvelocity;
+        Vector2 velocity;
+        public Vector2 Velocity { get { return velocity; } }
+        bool isJumping = false;
+        float gravity = 0.05f;
+        bool Pastfloor
+        {
+            get { return position.Y + frames[currentframeIndex].frame.Height > Game1.Viewport3.Height; }
+        }
         private Vector2 Bottomright(int width, int height)
         {
             return new Vector2(width, 0);
@@ -32,6 +42,8 @@ namespace Saiyuki_VS_Skywalker
         public Chun_LiStuff(Texture2D image, Vector2 position, Vector2 speed, Color color, List<Frame> frames)
             : base (image, position, speed, color, frames)
         {
+            initialvelocity = speed;
+
             List<Frame> stand = new List<Frame>()
             {
                 new Frame(new Rectangle(959, 43, 31, 50), new Vector2()),
@@ -106,11 +118,79 @@ namespace Saiyuki_VS_Skywalker
                 new Frame(new Rectangle(633, 130, 24, 51), new Vector2()),
             };
             animation3.Add(Chun_LiEnums.ChunLiFrames.WalkForward, walkforward);
+
+            List<Frame> walkbackward = new List<Frame>()
+            {
+                new Frame(new Rectangle(960, 133, 30, 47), new Vector2()),
+                new Frame(new Rectangle(960, 133, 30, 47), new Vector2()),
+                new Frame(new Rectangle(933, 132, 26, 48), new Vector2()),
+                new Frame(new Rectangle(933, 132, 26, 48), new Vector2()),
+                new Frame(new Rectangle(903, 132, 28, 48), new Vector2()),
+                new Frame(new Rectangle(903, 132, 28, 48), new Vector2()),
+                new Frame(new Rectangle(870, 133, 32, 47), new Vector2()),                
+                new Frame(new Rectangle(870, 133, 32, 47), new Vector2()),
+                new Frame(new Rectangle(842, 132, 28, 48), new Vector2()),
+                new Frame(new Rectangle(842, 132, 28, 48), new Vector2()),
+                new Frame(new Rectangle(812, 132, 26, 48), new Vector2()),
+                new Frame(new Rectangle(812, 132, 26, 48), new Vector2()),
+            };
+            animation3.Add(Chun_LiEnums.ChunLiFrames.WalkBackward, walkforward);
+
+            List<Frame> spinkick = new List<Frame>()
+            {
+                 //new Frame(new Rectangle(389, 442, 23, 72), new Vector2()),
+                 new Frame(new Rectangle(389, 442, 23, 72), new Vector2()),
+                 //new Frame(new Rectangle(347, 442, 39, 72), new Vector2()),
+                 new Frame(new Rectangle(347, 442, 39, 72), new Vector2()),
+                 //new Frame(new Rectangle(296, 442, 49, 72), new Vector2()),
+                 new Frame(new Rectangle(296, 442, 49, 72), new Vector2()),
+                 //new Frame(new Rectangle(252, 442, 42, 72), new Vector2()),
+                 new Frame(new Rectangle(252, 442, 42, 72), new Vector2()),
+                 //new Frame(new Rectangle(195, 442, 26, 72), new Vector2()),
+                 new Frame(new Rectangle(195, 442, 26, 72), new Vector2()),
+                 //new Frame(new Rectangle(159, 442, 30, 72), new Vector2()),
+                 new Frame(new Rectangle(159, 442, 30, 72), new Vector2()),
+                 new Frame(new Rectangle(92, 442, 58, 72), new Vector2()),
+                 new Frame(new Rectangle(92, 442, 58, 72), new Vector2()),
+                 new Frame(new Rectangle(32, 442, 58, 72), new Vector2()),
+                 new Frame(new Rectangle(32, 442, 58, 72), new Vector2()),
+
+                 new Frame(new Rectangle(159, 442, 30, 72), new Vector2()),
+                 new Frame(new Rectangle(195, 442, 26, 72), new Vector2()),
+                 new Frame(new Rectangle(252, 442, 42, 72), new Vector2()),
+                 new Frame(new Rectangle(296, 442, 42, 72), new Vector2()),
+                 new Frame(new Rectangle(347, 442, 39, 72), new Vector2()),
+                 new Frame(new Rectangle(389, 442, 23, 72), new Vector2()),                
+            };
+            animation3.Add(Chun_LiEnums.ChunLiFrames.SpinKick, spinkick);
+
+            List<Frame> jump = new List<Frame>()
+            {
+                new Frame(new Rectangle(969, 217, 21, 64), new Vector2()),
+                 new Frame(new Rectangle(969, 217, 21, 64), new Vector2()),
+                new Frame(new Rectangle(969, 217, 21, 64), new Vector2()),
+                new Frame(new Rectangle(945, 217, 23, 56), new Vector2()),
+                new Frame(new Rectangle(945, 217, 23, 56), new Vector2()),
+                new Frame(new Rectangle(945, 217, 23, 56), new Vector2()),
+                new Frame(new Rectangle(920, 217, 24, 43), new Vector2()),
+                new Frame(new Rectangle(920, 217, 24, 43), new Vector2()),
+                new Frame(new Rectangle(920, 217, 24, 43), new Vector2()),
+                new Frame(new Rectangle(894, 217, 23, 56), new Vector2()),
+                new Frame(new Rectangle(894, 217, 23, 56), new Vector2()),
+                new Frame(new Rectangle(894, 217, 23, 56), new Vector2()),
+                new Frame(new Rectangle(871, 217, 21, 64), new Vector2()),
+                new Frame(new Rectangle(871, 217, 21, 64), new Vector2()),
+                new Frame(new Rectangle(871, 217, 21, 64), new Vector2()),
+                //new Frame(new Rectangle(222, 442, 24, 72), new Vector2()),
+               // new Frame(new Rectangle(222, 442, 24, 72), new Vector2()),
+            };
+            animation3.Add(Chun_LiEnums.ChunLiFrames.Jump, jump);
+
         }
         public void Update (GameTime gtime, KeyboardState ks)
         {
             frames = animation3[currentframestate3];
-
+            /*
             if (currentframestate3 == Chun_LiEnums.ChunLiFrames.Punch)
             {
                 if (currentframeIndex + 1 >= frames.Count)
@@ -118,10 +198,12 @@ namespace Saiyuki_VS_Skywalker
                     currentframestate3 = Chun_LiEnums.ChunLiFrames.Stand;
                 }
             }
+            
             if (ks.IsKeyDown(Keys.Up))
             {
                 currentframestate3 = Chun_LiEnums.ChunLiFrames.Punch;
             }
+            */
             ////////////////////////////////////////////////////////////////
             if (currentframestate3 == Chun_LiEnums.ChunLiFrames.Punch2)
             {
@@ -160,6 +242,7 @@ namespace Saiyuki_VS_Skywalker
                 position.X -= speed.X;
             }
             ////////////////////////////////////////////////////////////////
+            /*
             if (currentframestate3 == Chun_LiEnums.ChunLiFrames.CrouchKick)
             {
                 if (currentframeIndex + 1 >= frames.Count)
@@ -171,6 +254,7 @@ namespace Saiyuki_VS_Skywalker
             {
                 currentframestate3 = Chun_LiEnums.ChunLiFrames.CrouchKick;
             }
+            */
             ////////////////////////////////////////////////////////////////
             if (currentframestate3 == Chun_LiEnums.ChunLiFrames.JumpKick)
             {
@@ -182,6 +266,57 @@ namespace Saiyuki_VS_Skywalker
             if (ks.IsKeyDown(Keys.B))
             {
                 currentframestate3 = Chun_LiEnums.ChunLiFrames.JumpKick;
+            }
+            ////////////////////////////////////////////////////////////////
+            if (currentframestate3 == Chun_LiEnums.ChunLiFrames.WalkBackward)
+            {
+                if (currentframeIndex + 1 >= frames.Count)
+                {
+                    currentframestate3 = Chun_LiEnums.ChunLiFrames.Stand;
+                }
+            }
+            if (ks.IsKeyDown(Keys.Right))
+            {
+                currentframestate3 = Chun_LiEnums.ChunLiFrames.WalkBackward;
+                position.X += speed.X;
+            }
+            ////////////////////////////////////////////////////////////////
+            if (isJumping)
+            {
+                velocity.Y -= gravity;
+                position.Y -= velocity.Y;
+                if (Pastfloor)
+                {
+                    isJumping = false;
+                }
+
+            }
+            if (currentframestate3 == Chun_LiEnums.ChunLiFrames.Jump)
+            {
+                if (currentframeIndex + 1 >= frames.Count)
+                {
+                    currentframestate3 = Chun_LiEnums.ChunLiFrames.Stand;
+                }
+            }
+            if (ks.IsKeyDown(Keys.Up) && !isJumping)
+            {
+                currentframestate3 = Chun_LiEnums.ChunLiFrames.Jump;
+                velocity = initialvelocity;
+                isJumping = true;
+            }
+            ////////////////////////////////////////////////////////////////
+            if (currentframestate3 == Chun_LiEnums.ChunLiFrames.SpinKick)
+            {
+                if (currentframeIndex + 1 >= frames.Count)
+                {
+                    currentframestate3 = Chun_LiEnums.ChunLiFrames.Stand;
+                }
+            }
+            if (ks.IsKeyDown(Keys.N))
+            {
+                currentframestate3 = Chun_LiEnums.ChunLiFrames.SpinKick;
+                position.X -= speed.X;
+
             }
             base.Update(gtime);
         }

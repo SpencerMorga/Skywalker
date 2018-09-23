@@ -17,7 +17,9 @@ namespace Saiyuki_VS_Skywalker
             WalkForward,
             WalkBackward,
             JumpKick,
-            Jump
+            Jump,
+            SpinKick,
+            Block
         }
     }
 }
