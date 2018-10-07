@@ -182,7 +182,7 @@ namespace Saiyuki_VS_Skywalker
                 new Frame(new Rectangle(871, 217, 21, 64), new Vector2()),
                 new Frame(new Rectangle(871, 217, 21, 64), new Vector2()),
                 //new Frame(new Rectangle(222, 442, 24, 72), new Vector2()),
-               // new Frame(new Rectangle(222, 442, 24, 72), new Vector2()),
+                //new Frame(new Rectangle(222, 442, 24, 72), new Vector2()),
             };
             animation3.Add(Chun_LiEnums.ChunLiFrames.Jump, jump);
 

@@ -78,6 +78,8 @@
     <Compile Include="Dhalsim.cs" />
     <Compile Include="DhalsimEnums.cs" />
     <Compile Include="Frame.cs" />
+    <Compile Include="MBison.cs" />
+    <Compile Include="MBisonEnums.cs" />
     <Compile Include="MovingAnimation.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Program.cs" />

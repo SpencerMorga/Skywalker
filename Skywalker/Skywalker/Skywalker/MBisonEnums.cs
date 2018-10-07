@@ -5,16 +5,22 @@ using System.Text;
 
 namespace Saiyuki_VS_Skywalker
 {
-    class DhalsimEnums
+    public class MBisonEnums
     {
-        public enum DhalsimFrames
+        public enum MBisonFrames
         {
             Stand,
             Punch,
+            HardPunch,
             Kick,
+            Forward,
+            Backward,
             Jump,
-            WalkForward,
-            WalkBackwards,
+            JumpPunch,
+            PsychoThingy,
+            FlipKick,
+            JumpKick
         }
+
     }
 }
