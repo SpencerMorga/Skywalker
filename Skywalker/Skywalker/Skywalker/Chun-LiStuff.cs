@@ -239,7 +239,7 @@ namespace Saiyuki_VS_Skywalker
             if (ks.IsKeyDown(Keys.Left))
             {
                 currentframestate3 = Chun_LiEnums.ChunLiFrames.WalkForward;
-                position.X -= speed.X;
+                position.X -= speed.X * 3;
             }
             ////////////////////////////////////////////////////////////////
             /*
@@ -278,7 +278,7 @@ namespace Saiyuki_VS_Skywalker
             if (ks.IsKeyDown(Keys.Right))
             {
                 currentframestate3 = Chun_LiEnums.ChunLiFrames.WalkBackward;
-                position.X += speed.X;
+                position.X += speed.X * 3;
             }
             ////////////////////////////////////////////////////////////////
             if (isJumping)
