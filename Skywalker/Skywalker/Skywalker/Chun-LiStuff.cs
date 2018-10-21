@@ -40,7 +40,7 @@ namespace Saiyuki_VS_Skywalker
             return new Vector2(width, 0);
         }
         public Chun_LiStuff(Texture2D image, Vector2 position, Vector2 speed, Color color, List<Frame> frames)
-            : base (image, position, speed, color, frames)
+            : base(image, position, speed, color, frames)
         {
             initialvelocity = speed;
 
@@ -127,7 +127,7 @@ namespace Saiyuki_VS_Skywalker
                 new Frame(new Rectangle(933, 132, 26, 48), new Vector2()),
                 new Frame(new Rectangle(903, 132, 28, 48), new Vector2()),
                 new Frame(new Rectangle(903, 132, 28, 48), new Vector2()),
-                new Frame(new Rectangle(870, 133, 32, 47), new Vector2()),                
+                new Frame(new Rectangle(870, 133, 32, 47), new Vector2()),
                 new Frame(new Rectangle(870, 133, 32, 47), new Vector2()),
                 new Frame(new Rectangle(842, 132, 28, 48), new Vector2()),
                 new Frame(new Rectangle(842, 132, 28, 48), new Vector2()),
@@ -160,7 +160,7 @@ namespace Saiyuki_VS_Skywalker
                  new Frame(new Rectangle(252, 442, 42, 72), new Vector2()),
                  new Frame(new Rectangle(296, 442, 42, 72), new Vector2()),
                  new Frame(new Rectangle(347, 442, 39, 72), new Vector2()),
-                 new Frame(new Rectangle(389, 442, 23, 72), new Vector2()),                
+                 new Frame(new Rectangle(389, 442, 23, 72), new Vector2()),
             };
             animation3.Add(Chun_LiEnums.ChunLiFrames.SpinKick, spinkick);
 
@@ -187,7 +187,7 @@ namespace Saiyuki_VS_Skywalker
             animation3.Add(Chun_LiEnums.ChunLiFrames.Jump, jump);
 
         }
-        public void Update (GameTime gtime, KeyboardState ks)
+        public void Update(GameTime gtime, KeyboardState ks)
         {
             frames = animation3[currentframestate3];
             /*
