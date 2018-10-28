@@ -75,8 +75,6 @@
     <Compile Include="Animation.cs" />
     <Compile Include="Chun-LiEnums.cs" />
     <Compile Include="Chun-LiStuff.cs" />
-    <Compile Include="Dhalsim.cs" />
-    <Compile Include="DhalsimEnums.cs" />
     <Compile Include="Frame.cs" />
     <Compile Include="MBison.cs" />
     <Compile Include="MBisonEnums.cs" />

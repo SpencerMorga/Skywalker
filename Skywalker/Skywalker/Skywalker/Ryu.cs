@@ -38,7 +38,7 @@ namespace Saiyuki_VS_Skywalker
         
         bool Pastfloor
         {
-            get { return position.Y + frames[currentframeIndex].frame.Height > Game1.Viewport2.Height; }
+            get { return position.Y + frames[currentframeIndex].frame.Height > Game1.Viewport2.Height - 16; }
         }
 
         public Ryu(Texture2D image, Vector2 position, Vector2 speed, Color color, List<Frame> frames)
@@ -80,30 +80,18 @@ namespace Saiyuki_VS_Skywalker
             List<Frame> forward = new List<Frame>()
             {
                 new Frame(new Rectangle(1, 143, 25, 60), new Vector2()),
-                new Frame(new Rectangle(1, 143, 25, 60), new Vector2()),
-                new Frame(new Rectangle(29, 143, 23, 60), new Vector2()),
-                new Frame(new Rectangle(29, 143, 23, 60), new Vector2()),
-                new Frame(new Rectangle(55, 143, 27, 60), new Vector2()),
                 new Frame(new Rectangle(55, 143, 27, 60), new Vector2()),
                 new Frame(new Rectangle(85, 143, 29, 60), new Vector2()),
-                new Frame(new Rectangle(85, 143, 29, 60), new Vector2()),
-                new Frame(new Rectangle(118, 143, 23, 60), new Vector2()),
                 new Frame(new Rectangle(118, 143, 23, 60), new Vector2()),
             };
             animation2.Add(SaiyukiEnums.SaiyukiFrames.WalkForward, forward);
             List<Frame> backward = new List<Frame>()
             {
                 new Frame(new Rectangle(156, 144, 28, 60), new Vector2()),
-                 new Frame(new Rectangle(156, 144, 28, 60), new Vector2()),
-                new Frame(new Rectangle(187, 144, 27, 59), new Vector2()),
                 new Frame(new Rectangle(187, 144, 27, 59), new Vector2()),
                 new Frame(new Rectangle(217, 143, 28, 61), new Vector2()),
-                new Frame(new Rectangle(217, 143, 28, 61), new Vector2()),
-                new Frame(new Rectangle(248, 142, 28, 62), new Vector2()),
                 new Frame(new Rectangle(248, 142, 28, 62), new Vector2()),
                 new Frame(new Rectangle(277, 143, 27, 60), new Vector2()),
-                new Frame(new Rectangle(277, 143, 27, 60), new Vector2()),
-
             };
             animation2.Add(SaiyukiEnums.SaiyukiFrames.WalkBackwards, backward);
             
@@ -217,7 +205,7 @@ namespace Saiyuki_VS_Skywalker
             {
                 currentframestate2 = SaiyukiEnums.SaiyukiFrames.Punch;
             }
-
+            
             //////////////////////////////////////////////////////////////////
             if (currentframestate2 == SaiyukiEnums.SaiyukiFrames.Kick)
             {
@@ -241,9 +229,9 @@ namespace Saiyuki_VS_Skywalker
             if (ks.IsKeyDown(Keys.NumPad6))
             {
                 currentframestate2 = SaiyukiEnums.SaiyukiFrames.WalkForward;
-                position.X += speed.X;
+                position.X += speed.X*2;
             }
-
+            
             //////////////////////////////////////////////////////////////////
             if (currentframestate2 == SaiyukiEnums.SaiyukiFrames.WalkBackwards)
             {
@@ -255,7 +243,7 @@ namespace Saiyuki_VS_Skywalker
             if (ks.IsKeyDown(Keys.NumPad4))
             {
                 currentframestate2 = SaiyukiEnums.SaiyukiFrames.WalkBackwards;
-                position.X -= speed.X;
+                position.X -= speed.X*2;
             }
             //////////////////////////////////////////////////////////////////
 

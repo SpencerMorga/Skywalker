@@ -24,7 +24,11 @@ namespace Saiyuki_VS_Skywalker
         float gravity = 0.05f;
         bool Pastfloor
         {
-            get { return position.Y + frames[currentframeIndex].frame.Height > Game1.Viewport3.Height; }
+            get { return position.Y + frames[currentframeIndex].frame.Height > Game1.Viewport3.Height - 14; }
+        }
+        private Vector2 BottomLeft(int width, int height)
+        {
+            return new Vector2(0, height);
         }
         public MBison (Texture2D image, Vector2 position, Vector2 speed, Color color, List<Frame> frames)
             : base (image, position, speed, color, frames)
@@ -146,6 +150,16 @@ namespace Saiyuki_VS_Skywalker
             List<Frame> jumpkick = new List<Frame>()
             {
                 new Frame(new Rectangle(386, 226, 40, 64), new Vector2()),
+                new Frame(new Rectangle(386, 226, 40, 64), new Vector2()),
+                new Frame(new Rectangle(386, 226, 40, 64), new Vector2()),
+                new Frame(new Rectangle(386, 226, 40, 64), new Vector2()),
+                new Frame(new Rectangle(386, 226, 40, 64), new Vector2()),
+                new Frame(new Rectangle(386, 226, 40, 64), new Vector2()),
+                new Frame(new Rectangle(430, 230, 60, 44), new Vector2()),
+                new Frame(new Rectangle(430, 230, 60, 44), new Vector2()),
+                new Frame(new Rectangle(430, 230, 60, 44), new Vector2()),
+                new Frame(new Rectangle(430, 230, 60, 44), new Vector2()),
+                new Frame(new Rectangle(430, 230, 60, 44), new Vector2()),
                 new Frame(new Rectangle(430, 230, 60, 44), new Vector2()),
             };
             animation5.Add(MBisonEnums.MBisonFrames.JumpKick, jumpkick);
@@ -211,11 +225,9 @@ namespace Saiyuki_VS_Skywalker
                     currentframestate5 = MBisonEnums.MBisonFrames.Stand;
                 }
             }
-            if (ks.IsKeyDown(Keys.P) && !isJumping)
+            if (ks.IsKeyDown(Keys.P))
             {
-                currentframestate5 = MBisonEnums.MBisonFrames.JumpPunch;
-                isJumping = true;
-                velocity = initialvelocity;
+                currentframestate5 = MBisonEnums.MBisonFrames.JumpPunch;;
             }
             
             if (currentframestate5 == MBisonEnums.MBisonFrames.JumpKick)

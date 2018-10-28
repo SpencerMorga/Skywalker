@@ -61,7 +61,7 @@ namespace Saiyuki_VS_Skywalker
             //bottom center
             List<Frame> RunRight = new List<Frame>()
             {
-                new Frame(new Rectangle(202, 40, 18, 32), BottomLeft (18, 32)),
+                new Frame(new Rectangle(202, 40, 18, 32), BottomLeft(18, 32)),
                 new Frame(new Rectangle(242, 40, 20, 31), BottomLeft(20, 31)),
                 new Frame(new Rectangle(285, 40, 12, 32), BottomLeft(12, 32)),
                 new Frame(new Rectangle(324, 40, 14, 32), BottomLeft(14, 32)),

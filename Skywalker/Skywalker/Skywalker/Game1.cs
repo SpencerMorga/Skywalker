@@ -62,7 +62,7 @@ namespace Saiyuki_VS_Skywalker
             temp = GraphicsDevice.Viewport;
             temp2 = GraphicsDevice.Viewport;
             temp3 = GraphicsDevice.Viewport;
-            TheForce = new SkywalkerStuff(Content.Load<Texture2D>("skywalker"), new Vector2(600, 550), new Vector2(3), Color.White, new List<Frame>());
+            TheForce = new SkywalkerStuff(Content.Load<Texture2D>("skywalker"), new Vector2(600, 6050), new Vector2(3), Color.White, new List<Frame>());
             MonkeyDude = new Ryu(Content.Load<Texture2D>("ryu"), new Vector2(200, 350), new Vector2(3), Color.White, new List<Frame>());
             Dumpling = new Chun_LiStuff(Content.Load<Texture2D>("chun-li"), new Vector2(600, 150), new Vector2(3), Color.White, new List<Frame>());
             Buffalo = new MBison(Content.Load<Texture2D>("mbison"), new Vector2(200, 350), new Vector2(3), Color.White, new List<Frame>());

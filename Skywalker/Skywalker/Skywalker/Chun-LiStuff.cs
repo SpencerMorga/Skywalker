@@ -33,7 +33,7 @@ namespace Saiyuki_VS_Skywalker
         float gravity = 0.05f;
         bool Pastfloor
         {
-            get { return position.Y + frames[currentframeIndex].frame.Height > Game1.Viewport3.Height; }
+            get { return position.Y + frames[currentframeIndex].frame.Height > Game1.Viewport3.Height - 20; }
         }
         private Vector2 Bottomright(int width, int height)
         {
@@ -58,7 +58,6 @@ namespace Saiyuki_VS_Skywalker
 
             List<Frame> punch = new List<Frame>()
             {
-              //  new Frame(new Rectangle(827, 43, 31, 56), new Vector2()),
                 new Frame(new Rectangle(827, 43, 31, 56), Bottomright(31, 56)),
                 new Frame(new Rectangle(781, 36, 43, 57), Bottomright(43, 57)),
                 new Frame(new Rectangle(781, 36, 43, 57), Bottomright(43, 57)),
@@ -105,16 +104,10 @@ namespace Saiyuki_VS_Skywalker
             List<Frame> walkforward = new List<Frame>()
             {
                 new Frame(new Rectangle(772, 131, 28, 49), new Vector2()),
-                new Frame(new Rectangle(772, 131, 28, 49), new Vector2()),
-                new Frame(new Rectangle(746, 129, 24, 51), new Vector2()),
                 new Frame(new Rectangle(746, 129, 24, 51), new Vector2()),
                 new Frame(new Rectangle(717, 129, 27, 51), new Vector2()),
-                new Frame(new Rectangle(717, 129, 27, 51), new Vector2()),
-                new Frame(new Rectangle(687, 131, 28, 49), new Vector2()),
                 new Frame(new Rectangle(687, 131, 28, 49), new Vector2()),
                 new Frame(new Rectangle(659, 130, 26, 51), new Vector2()),
-                new Frame(new Rectangle(659, 130, 26, 51), new Vector2()),
-                new Frame(new Rectangle(633, 130, 24, 51), new Vector2()),
                 new Frame(new Rectangle(633, 130, 24, 51), new Vector2()),
             };
             animation3.Add(Chun_LiEnums.ChunLiFrames.WalkForward, walkforward);
@@ -122,45 +115,37 @@ namespace Saiyuki_VS_Skywalker
             List<Frame> walkbackward = new List<Frame>()
             {
                 new Frame(new Rectangle(960, 133, 30, 47), new Vector2()),
-                new Frame(new Rectangle(960, 133, 30, 47), new Vector2()),
-                new Frame(new Rectangle(933, 132, 26, 48), new Vector2()),
                 new Frame(new Rectangle(933, 132, 26, 48), new Vector2()),
                 new Frame(new Rectangle(903, 132, 28, 48), new Vector2()),
-                new Frame(new Rectangle(903, 132, 28, 48), new Vector2()),
-                new Frame(new Rectangle(870, 133, 32, 47), new Vector2()),
                 new Frame(new Rectangle(870, 133, 32, 47), new Vector2()),
                 new Frame(new Rectangle(842, 132, 28, 48), new Vector2()),
-                new Frame(new Rectangle(842, 132, 28, 48), new Vector2()),
-                new Frame(new Rectangle(812, 132, 26, 48), new Vector2()),
                 new Frame(new Rectangle(812, 132, 26, 48), new Vector2()),
             };
             animation3.Add(Chun_LiEnums.ChunLiFrames.WalkBackward, walkforward);
 
             List<Frame> spinkick = new List<Frame>()
             {
-                 //new Frame(new Rectangle(389, 442, 23, 72), new Vector2()),
                  new Frame(new Rectangle(389, 442, 23, 72), new Vector2()),
-                 //new Frame(new Rectangle(347, 442, 39, 72), new Vector2()),
                  new Frame(new Rectangle(347, 442, 39, 72), new Vector2()),
-                 //new Frame(new Rectangle(296, 442, 49, 72), new Vector2()),
                  new Frame(new Rectangle(296, 442, 49, 72), new Vector2()),
-                 //new Frame(new Rectangle(252, 442, 42, 72), new Vector2()),
                  new Frame(new Rectangle(252, 442, 42, 72), new Vector2()),
-                 //new Frame(new Rectangle(195, 442, 26, 72), new Vector2()),
                  new Frame(new Rectangle(195, 442, 26, 72), new Vector2()),
-                 //new Frame(new Rectangle(159, 442, 30, 72), new Vector2()),
+                 new Frame(new Rectangle(222, 442, 24, 72), new Vector2()),
+                 new Frame(new Rectangle(222, 442, 24, 72), new Vector2()),
                  new Frame(new Rectangle(159, 442, 30, 72), new Vector2()),
                  new Frame(new Rectangle(92, 442, 58, 72), new Vector2()),
                  new Frame(new Rectangle(92, 442, 58, 72), new Vector2()),
                  new Frame(new Rectangle(32, 442, 58, 72), new Vector2()),
                  new Frame(new Rectangle(32, 442, 58, 72), new Vector2()),
-
                  new Frame(new Rectangle(159, 442, 30, 72), new Vector2()),
+                 new Frame(new Rectangle(222, 442, 24, 72), new Vector2()),
+                 new Frame(new Rectangle(222, 442, 24, 72), new Vector2()),
                  new Frame(new Rectangle(195, 442, 26, 72), new Vector2()),
                  new Frame(new Rectangle(252, 442, 42, 72), new Vector2()),
                  new Frame(new Rectangle(296, 442, 42, 72), new Vector2()),
                  new Frame(new Rectangle(347, 442, 39, 72), new Vector2()),
                  new Frame(new Rectangle(389, 442, 23, 72), new Vector2()),
+
             };
             animation3.Add(Chun_LiEnums.ChunLiFrames.SpinKick, spinkick);
 
@@ -181,8 +166,6 @@ namespace Saiyuki_VS_Skywalker
                 new Frame(new Rectangle(871, 217, 21, 64), new Vector2()),
                 new Frame(new Rectangle(871, 217, 21, 64), new Vector2()),
                 new Frame(new Rectangle(871, 217, 21, 64), new Vector2()),
-                //new Frame(new Rectangle(222, 442, 24, 72), new Vector2()),
-                //new Frame(new Rectangle(222, 442, 24, 72), new Vector2()),
             };
             animation3.Add(Chun_LiEnums.ChunLiFrames.Jump, jump);
 
@@ -190,21 +173,7 @@ namespace Saiyuki_VS_Skywalker
         public void Update(GameTime gtime, KeyboardState ks)
         {
             frames = animation3[currentframestate3];
-            /*
-            if (currentframestate3 == Chun_LiEnums.ChunLiFrames.Punch)
-            {
-                if (currentframeIndex + 1 >= frames.Count)
-                {
-                    currentframestate3 = Chun_LiEnums.ChunLiFrames.Stand;
-                }
-            }
-            
-            if (ks.IsKeyDown(Keys.Up))
-            {
-                currentframestate3 = Chun_LiEnums.ChunLiFrames.Punch;
-            }
-            */
-            ////////////////////////////////////////////////////////////////
+
             if (currentframestate3 == Chun_LiEnums.ChunLiFrames.Punch2)
             {
                 if (currentframeIndex + 1 >= frames.Count)
@@ -241,20 +210,6 @@ namespace Saiyuki_VS_Skywalker
                 currentframestate3 = Chun_LiEnums.ChunLiFrames.WalkForward;
                 position.X -= speed.X * 3;
             }
-            ////////////////////////////////////////////////////////////////
-            /*
-            if (currentframestate3 == Chun_LiEnums.ChunLiFrames.CrouchKick)
-            {
-                if (currentframeIndex + 1 >= frames.Count)
-                {
-                    currentframestate3 = Chun_LiEnums.ChunLiFrames.Stand;
-                }
-            }
-            if (ks.IsKeyDown(Keys.N))
-            {
-                currentframestate3 = Chun_LiEnums.ChunLiFrames.CrouchKick;
-            }
-            */
             ////////////////////////////////////////////////////////////////
             if (currentframestate3 == Chun_LiEnums.ChunLiFrames.JumpKick)
             {
