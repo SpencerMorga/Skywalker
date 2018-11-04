@@ -31,6 +31,9 @@ namespace Saiyuki_VS_Skywalker
         public Vector2 Velocity { get { return velocity; } }
         bool isJumping = false;
         float gravity = 0.05f;
+        public bool punch = false;
+        public bool regkick = false;
+        public bool spinkick = false;
         bool Pastfloor
         {
             get { return position.Y + frames[currentframeIndex].frame.Height > Game1.Viewport3.Height - 20; }
@@ -173,7 +176,18 @@ namespace Saiyuki_VS_Skywalker
         public void Update(GameTime gtime, KeyboardState ks)
         {
             frames = animation3[currentframestate3];
-
+            if (punch)
+            {
+                currentframestate3 = Chun_LiEnums.ChunLiFrames.Punch2;
+            }
+            if (regkick)
+            {
+                currentframestate3 = Chun_LiEnums.ChunLiFrames.Kick;
+            }
+            if (spinkick)
+            {
+                currentframestate3 = Chun_LiEnums.ChunLiFrames.SpinKick;
+            }
             if (currentframestate3 == Chun_LiEnums.ChunLiFrames.Punch2)
             {
                 if (currentframeIndex + 1 >= frames.Count)
@@ -184,6 +198,10 @@ namespace Saiyuki_VS_Skywalker
             if (ks.IsKeyDown(Keys.Down))
             {
                 currentframestate3 = Chun_LiEnums.ChunLiFrames.Punch2;
+                punch = true;
+                
+
+                
             }
             ////////////////////////////////////////////////////////////////
             if (currentframestate3 == Chun_LiEnums.ChunLiFrames.Kick)
@@ -196,6 +214,7 @@ namespace Saiyuki_VS_Skywalker
             if (ks.IsKeyDown(Keys.M))
             {
                 currentframestate3 = Chun_LiEnums.ChunLiFrames.Kick;
+                regkick = true;
             }
             ////////////////////////////////////////////////////////////////
             if (currentframestate3 == Chun_LiEnums.ChunLiFrames.WalkForward)
@@ -209,6 +228,9 @@ namespace Saiyuki_VS_Skywalker
             {
                 currentframestate3 = Chun_LiEnums.ChunLiFrames.WalkForward;
                 position.X -= speed.X * 3;
+                punch = false;
+                regkick = false;
+                spinkick = false;
             }
             ////////////////////////////////////////////////////////////////
             if (currentframestate3 == Chun_LiEnums.ChunLiFrames.JumpKick)
@@ -234,6 +256,9 @@ namespace Saiyuki_VS_Skywalker
             {
                 currentframestate3 = Chun_LiEnums.ChunLiFrames.WalkBackward;
                 position.X += speed.X * 3;
+                punch = false;
+                regkick = false;
+                spinkick = false;
             }
             ////////////////////////////////////////////////////////////////
             if (isJumping)
@@ -258,6 +283,11 @@ namespace Saiyuki_VS_Skywalker
                 currentframestate3 = Chun_LiEnums.ChunLiFrames.Jump;
                 velocity = initialvelocity;
                 isJumping = true;
+                punch = false;
+                regkick = false;
+                spinkick = false;
+
+
             }
             ////////////////////////////////////////////////////////////////
             if (currentframestate3 == Chun_LiEnums.ChunLiFrames.SpinKick)
@@ -271,7 +301,7 @@ namespace Saiyuki_VS_Skywalker
             {
                 currentframestate3 = Chun_LiEnums.ChunLiFrames.SpinKick;
                 position.X -= speed.X;
-
+                spinkick = true;
             }
             base.Update(gtime);
         }

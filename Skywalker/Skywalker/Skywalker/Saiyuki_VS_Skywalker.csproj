@@ -76,6 +76,7 @@
     <Compile Include="Chun-LiEnums.cs" />
     <Compile Include="Chun-LiStuff.cs" />
     <Compile Include="Frame.cs" />
+    <Compile Include="Labels.cs" />
     <Compile Include="MBison.cs" />
     <Compile Include="MBisonEnums.cs" />
     <Compile Include="MovingAnimation.cs" />

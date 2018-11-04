@@ -35,7 +35,7 @@ namespace Saiyuki_VS_Skywalker
         public Vector2 Velocity { get { return velocity; } }
         bool isJumping = false;
         float gravity = 0.05f;
-        
+        public int health = 10;
         bool Pastfloor
         {
             get { return position.Y + frames[currentframeIndex].frame.Height > Game1.Viewport2.Height - 16; }

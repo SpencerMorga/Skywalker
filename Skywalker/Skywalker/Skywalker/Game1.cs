@@ -18,10 +18,17 @@ namespace Saiyuki_VS_Skywalker
     {
         GraphicsDeviceManager graphics;
         SpriteBatch spriteBatch;
+        Texture2D pixel;
+        Labels label;
+        Labels label2;
+        Labels label3;
         SkywalkerStuff TheForce;
         Ryu MonkeyDude;
         Chun_LiStuff Dumpling;
         MBison Buffalo;
+        int count = 100;
+        int count2 = 150;
+        int count3 = 75;
         
         public static Viewport Viewport { get { return temp; } }
         public static Viewport Viewport2 { get { return temp; } }
@@ -35,7 +42,7 @@ namespace Saiyuki_VS_Skywalker
             graphics = new GraphicsDeviceManager(this);
             Content.RootDirectory = "Content";
 
-        
+
         }
 
         /// <summary>
@@ -47,7 +54,7 @@ namespace Saiyuki_VS_Skywalker
         protected override void Initialize()
         {
             // TODO: Add your initialization logic here
-            
+
             base.Initialize();
         }
 
@@ -62,6 +69,11 @@ namespace Saiyuki_VS_Skywalker
             temp = GraphicsDevice.Viewport;
             temp2 = GraphicsDevice.Viewport;
             temp3 = GraphicsDevice.Viewport;
+            pixel = new Texture2D(GraphicsDevice, 1, 1);
+            pixel.SetData(new Color[] { Color.White });
+            label = new Labels(Color.Red, new Vector2(10,10), Content.Load<SpriteFont>("font"), "Ryu's Health: 100");
+            label2 = new Labels(Color.MediumPurple, new Vector2(250, 10), Content.Load<SpriteFont>("font"), "MBison's Health: 150");
+            label3 = new Labels(Color.Blue, new Vector2(490, 10), Content.Load<SpriteFont>("font"), "Chun-Li's Health: 75");
             TheForce = new SkywalkerStuff(Content.Load<Texture2D>("skywalker"), new Vector2(600, 6050), new Vector2(3), Color.White, new List<Frame>());
             MonkeyDude = new Ryu(Content.Load<Texture2D>("ryu"), new Vector2(200, 350), new Vector2(3), Color.White, new List<Frame>());
             Dumpling = new Chun_LiStuff(Content.Load<Texture2D>("chun-li"), new Vector2(600, 150), new Vector2(3), Color.White, new List<Frame>());
@@ -86,13 +98,53 @@ namespace Saiyuki_VS_Skywalker
         protected override void Update(GameTime gameTime)
         {
             // Allows the game to exit
-            
+
 
             TheForce.Update(gameTime, Keyboard.GetState());
             MonkeyDude.Update(gameTime, Keyboard.GetState());
             Dumpling.Update(gameTime, Keyboard.GetState());
             Buffalo.Update(gameTime, Keyboard.GetState());
             base.Update(gameTime);
+        
+            if (Dumpling.punch == true)
+            {
+                if (Dumpling.Hitbox.Intersects(MonkeyDude.Hitbox))
+                {
+                    label.text = $"Ryu's Health: {count}";
+                    count--;
+                }
+                else if (Dumpling.Hitbox.Intersects(Buffalo.Hitbox))
+                {
+                    label2.text = $"MBison's Health: {count2}";
+                    count2--;
+                }
+            }          
+            if (Dumpling.regkick == true)
+            {
+                if (Dumpling.Hitbox.Intersects(MonkeyDude.Hitbox))
+                {
+                    label.text = $"Ryu's Health: {count}";
+                    count = count -2;
+                }
+                else if (Dumpling.Hitbox.Intersects(Buffalo.Hitbox))
+                {
+                    label2.text = $"MBison's Health: {count2}";
+                    count2 = count2 - 2;
+                }
+            }
+            if (Dumpling.spinkick == true)
+            {
+                if (Dumpling.Hitbox.Intersects(MonkeyDude.Hitbox))
+                {
+                    label.text = $"Ryu's Health: {count}";
+                    count = count - 3;
+                }
+                else if (Dumpling.Hitbox.Intersects(Buffalo.Hitbox))
+                {
+                    label2.text = $"MBison's Health: {count}";
+                    count = count - 3;
+                }
+            }
         }
 
         /// <summary>
@@ -105,9 +157,11 @@ namespace Saiyuki_VS_Skywalker
             //GraphicsDevice.Clear(Color.OliveDrab);
             spriteBatch.Begin();
             TheForce.Draw(spriteBatch);
-            MonkeyDude.Draw(spriteBatch);
-            Dumpling.Draw(spriteBatch);
-            Buffalo.Draw(spriteBatch);
+            MonkeyDude.Draw(spriteBatch, pixel);
+            Dumpling.Draw(spriteBatch, pixel);
+            Buffalo.Draw(spriteBatch, pixel);
+            label.Draw(spriteBatch);
+            label2.Draw(spriteBatch);
             spriteBatch.End();
             // TODO: Add your drawing code here
 
