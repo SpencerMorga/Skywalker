@@ -22,6 +22,11 @@ namespace Saiyuki_VS_Skywalker
         public Vector2 Velocity { get { return velocity; } }
         bool isJumping = false;
         float gravity = 0.05f;
+        public bool punch;
+        public bool hardpunch;
+        public bool kick;
+        public bool spinkick;
+        public bool psychothingy;
         bool Pastfloor
         {
             get { return position.Y + frames[currentframeIndex].frame.Height > Game1.Viewport3.Height - 14; }
@@ -194,7 +199,26 @@ namespace Saiyuki_VS_Skywalker
         public void Update(GameTime gtime, KeyboardState ks)
         {
             frames = animation5[currentframestate5];
-
+            if (punch)
+            {
+                currentframestate5 = MBisonEnums.MBisonFrames.Punch;
+            }
+            if (hardpunch)
+            {
+                currentframestate5 = MBisonEnums.MBisonFrames.HardPunch;
+            }
+            if (kick)
+            {
+                currentframestate5 = MBisonEnums.MBisonFrames.Kick;
+            }
+            if (spinkick)
+            {
+                currentframestate5 = MBisonEnums.MBisonFrames.FlipKick;
+            }
+            if (psychothingy)
+            {
+                currentframestate5 = MBisonEnums.MBisonFrames.PsychoThingy;
+            }
             if (isJumping)
             {
                 velocity.Y -= gravity;
@@ -217,6 +241,11 @@ namespace Saiyuki_VS_Skywalker
                 currentframestate5 = MBisonEnums.MBisonFrames.Jump;
                 isJumping = true;
                 velocity = initialvelocity;
+                punch = false;
+                kick = false;
+                hardpunch = false;
+                spinkick = false;
+                psychothingy = false;
             }
             if (currentframestate5 == MBisonEnums.MBisonFrames.JumpPunch)
             {
@@ -254,6 +283,7 @@ namespace Saiyuki_VS_Skywalker
             if (ks.IsKeyDown(Keys.K))
             {
                 currentframestate5 = MBisonEnums.MBisonFrames.Punch;
+                punch = true;
             }
             ////////////////////////////////////////////////////////////////////
             if (currentframestate5 == MBisonEnums.MBisonFrames.HardPunch)
@@ -266,6 +296,7 @@ namespace Saiyuki_VS_Skywalker
             if (ks.IsKeyDown(Keys.O))
             {
                 currentframestate5 = MBisonEnums.MBisonFrames.HardPunch;
+                hardpunch = true;
             }
             ////////////////////////////////////////////////////////////////////
             if (currentframestate5 == MBisonEnums.MBisonFrames.Kick)
@@ -278,6 +309,7 @@ namespace Saiyuki_VS_Skywalker
             if (ks.IsKeyDown(Keys.U))
             {
                 currentframestate5 = MBisonEnums.MBisonFrames.Kick;
+                kick = true;
             }
             ////////////////////////////////////////////////////////////////////
       
@@ -293,6 +325,7 @@ namespace Saiyuki_VS_Skywalker
             {
                 currentframestate5 = MBisonEnums.MBisonFrames.FlipKick;
                 position.X += speed.X;
+                spinkick = true;
             }
             ////////////////////////////////////////////////////////////////////
             if (currentframestate5 == MBisonEnums.MBisonFrames.PsychoThingy)
@@ -306,6 +339,7 @@ namespace Saiyuki_VS_Skywalker
             {
                 currentframestate5 = MBisonEnums.MBisonFrames.PsychoThingy;
                 position.X += speed.X * 3;
+                psychothingy = true;
             }
             ////////////////////////////////////////////////////////////////////
             if (currentframestate5 == MBisonEnums.MBisonFrames.Forward)
@@ -319,6 +353,11 @@ namespace Saiyuki_VS_Skywalker
             {
                 currentframestate5 = MBisonEnums.MBisonFrames.Forward;
                 position.X += speed.X;
+                punch = false;
+                kick = false;
+                hardpunch = false;
+                spinkick = false;
+                psychothingy = false;
             }
             ////////////////////////////////////////////////////////////////////
             if (currentframestate5 == MBisonEnums.MBisonFrames.Backward)
@@ -332,6 +371,11 @@ namespace Saiyuki_VS_Skywalker
             {
                 currentframestate5 = MBisonEnums.MBisonFrames.Backward;
                 position.X -= speed.X;
+                punch = false;
+                kick = false;
+                hardpunch = false;
+                spinkick = false;
+                psychothingy = false;
             }
             base.Update(gtime);
         }

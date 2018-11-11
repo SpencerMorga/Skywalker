@@ -36,6 +36,10 @@ namespace Saiyuki_VS_Skywalker
         bool isJumping = false;
         float gravity = 0.05f;
         public int health = 10;
+        public bool punch;
+        public bool kick;
+        public bool jumppunch;
+        public bool jumpkick;
         bool Pastfloor
         {
             get { return position.Y + frames[currentframeIndex].frame.Height > Game1.Viewport2.Height - 16; }
@@ -143,6 +147,22 @@ namespace Saiyuki_VS_Skywalker
         {
             frames = animation2[currentframestate2];
 
+            if (punch)
+            {
+                currentframestate2 = SaiyukiEnums.SaiyukiFrames.Punch;
+            }
+            if (kick)
+            {
+                currentframestate2 = SaiyukiEnums.SaiyukiFrames.Kick;
+            }
+            if (jumppunch)
+            {
+                currentframestate2 = SaiyukiEnums.SaiyukiFrames.JumpPunch;
+            }
+            if (jumpkick)
+            {
+                currentframestate2 = SaiyukiEnums.SaiyukiFrames.JumpKick;
+            }
             if (isJumping)
             {
                 velocity.Y -= gravity;
@@ -164,7 +184,7 @@ namespace Saiyuki_VS_Skywalker
             if (ks.IsKeyDown(Keys.NumPad9))
             {
                 currentframestate2 = SaiyukiEnums.SaiyukiFrames.JumpPunch;
-
+                jumppunch = true;
             }
 
             if (currentframestate2 == SaiyukiEnums.SaiyukiFrames.Jump)
@@ -179,6 +199,10 @@ namespace Saiyuki_VS_Skywalker
                 currentframestate2 = SaiyukiEnums.SaiyukiFrames.Jump;
                 velocity = initialvelocity;
                 isJumping = true;
+                punch = false;
+                kick = false;
+                jumpkick = false;
+                jumppunch = false;
             }
 
             if (currentframestate2 == SaiyukiEnums.SaiyukiFrames.JumpKick)
@@ -191,6 +215,7 @@ namespace Saiyuki_VS_Skywalker
             if (ks.IsKeyDown(Keys.NumPad7))
             {
                 currentframestate2 = SaiyukiEnums.SaiyukiFrames.JumpKick;
+                jumpkick = true;
 
             }
             //////////////////////////////////////////////////////////////////
@@ -204,6 +229,7 @@ namespace Saiyuki_VS_Skywalker
             if (ks.IsKeyDown(Keys.NumPad5))
             {
                 currentframestate2 = SaiyukiEnums.SaiyukiFrames.Punch;
+                punch = true;
             }
             
             //////////////////////////////////////////////////////////////////
@@ -217,6 +243,7 @@ namespace Saiyuki_VS_Skywalker
             if (ks.IsKeyDown(Keys.NumPad0))
             {
                 currentframestate2 = SaiyukiEnums.SaiyukiFrames.Kick;
+                kick = true;
             }
             //////////////////////////////////////////////////////////////////
             if (currentframestate2 == SaiyukiEnums.SaiyukiFrames.WalkForward)
@@ -230,6 +257,10 @@ namespace Saiyuki_VS_Skywalker
             {
                 currentframestate2 = SaiyukiEnums.SaiyukiFrames.WalkForward;
                 position.X += speed.X*2;
+                punch = false;
+                kick = false;
+                jumppunch = false;
+                jumpkick = false;
             }
             
             //////////////////////////////////////////////////////////////////
@@ -244,6 +275,10 @@ namespace Saiyuki_VS_Skywalker
             {
                 currentframestate2 = SaiyukiEnums.SaiyukiFrames.WalkBackwards;
                 position.X -= speed.X*2;
+                punch = false;
+                kick = false;
+                jumppunch = false;
+                jumpkick = false;
             }
             //////////////////////////////////////////////////////////////////
 

@@ -34,6 +34,8 @@ namespace Saiyuki_VS_Skywalker
         public bool punch = false;
         public bool regkick = false;
         public bool spinkick = false;
+        public bool jumpkick = false;
+        public int health = 400;
         bool Pastfloor
         {
             get { return position.Y + frames[currentframeIndex].frame.Height > Game1.Viewport3.Height - 20; }
@@ -188,6 +190,11 @@ namespace Saiyuki_VS_Skywalker
             {
                 currentframestate3 = Chun_LiEnums.ChunLiFrames.SpinKick;
             }
+            if (jumpkick)
+            {
+                currentframestate3 = Chun_LiEnums.ChunLiFrames.JumpKick;
+            }
+
             if (currentframestate3 == Chun_LiEnums.ChunLiFrames.Punch2)
             {
                 if (currentframeIndex + 1 >= frames.Count)
@@ -227,10 +234,11 @@ namespace Saiyuki_VS_Skywalker
             if (ks.IsKeyDown(Keys.Left))
             {
                 currentframestate3 = Chun_LiEnums.ChunLiFrames.WalkForward;
-                position.X -= speed.X * 3;
+                position.X -= speed.X * 2;
                 punch = false;
                 regkick = false;
                 spinkick = false;
+                jumpkick = false;
             }
             ////////////////////////////////////////////////////////////////
             if (currentframestate3 == Chun_LiEnums.ChunLiFrames.JumpKick)
@@ -243,6 +251,7 @@ namespace Saiyuki_VS_Skywalker
             if (ks.IsKeyDown(Keys.B))
             {
                 currentframestate3 = Chun_LiEnums.ChunLiFrames.JumpKick;
+                jumpkick = true;
             }
             ////////////////////////////////////////////////////////////////
             if (currentframestate3 == Chun_LiEnums.ChunLiFrames.WalkBackward)
@@ -255,10 +264,11 @@ namespace Saiyuki_VS_Skywalker
             if (ks.IsKeyDown(Keys.Right))
             {
                 currentframestate3 = Chun_LiEnums.ChunLiFrames.WalkBackward;
-                position.X += speed.X * 3;
+                position.X += speed.X * 2;
                 punch = false;
                 regkick = false;
                 spinkick = false;
+                jumpkick = false;
             }
             ////////////////////////////////////////////////////////////////
             if (isJumping)
@@ -285,6 +295,7 @@ namespace Saiyuki_VS_Skywalker
                 isJumping = true;
                 punch = false;
                 regkick = false;
+                jumpkick = false;
                 spinkick = false;
 
 

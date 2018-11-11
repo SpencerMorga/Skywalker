@@ -23,12 +23,12 @@ namespace Saiyuki_VS_Skywalker
         Labels label2;
         Labels label3;
         SkywalkerStuff TheForce;
-        Ryu MonkeyDude;
-        Chun_LiStuff Dumpling;
-        MBison Buffalo;
-        int count = 100;
-        int count2 = 150;
-        int count3 = 75;
+        Ryu ryu;
+        Chun_LiStuff chunli;
+        MBison mbison;
+        int count = 400;
+        int count2 = 450;
+        int count3 = 400;
         
         public static Viewport Viewport { get { return temp; } }
         public static Viewport Viewport2 { get { return temp; } }
@@ -71,13 +71,13 @@ namespace Saiyuki_VS_Skywalker
             temp3 = GraphicsDevice.Viewport;
             pixel = new Texture2D(GraphicsDevice, 1, 1);
             pixel.SetData(new Color[] { Color.White });
-            label = new Labels(Color.Red, new Vector2(10,10), Content.Load<SpriteFont>("font"), "Ryu's Health: 100");
-            label2 = new Labels(Color.MediumPurple, new Vector2(250, 10), Content.Load<SpriteFont>("font"), "MBison's Health: 150");
-            label3 = new Labels(Color.Blue, new Vector2(490, 10), Content.Load<SpriteFont>("font"), "Chun-Li's Health: 75");
+            label = new Labels(Color.Black, new Vector2(10,10), Content.Load<SpriteFont>("font"), "Ryu's Health: 400");
+            label2 = new Labels(Color.Black, new Vector2(270, 10), Content.Load<SpriteFont>("font"), "MBison's Health: 450");
+            label3 = new Labels(Color.Black, new Vector2(550, 10), Content.Load<SpriteFont>("font"), "Chun-Li's Health: 400");
             TheForce = new SkywalkerStuff(Content.Load<Texture2D>("skywalker"), new Vector2(600, 6050), new Vector2(3), Color.White, new List<Frame>());
-            MonkeyDude = new Ryu(Content.Load<Texture2D>("ryu"), new Vector2(200, 350), new Vector2(3), Color.White, new List<Frame>());
-            Dumpling = new Chun_LiStuff(Content.Load<Texture2D>("chun-li"), new Vector2(600, 150), new Vector2(3), Color.White, new List<Frame>());
-            Buffalo = new MBison(Content.Load<Texture2D>("mbison"), new Vector2(200, 350), new Vector2(3), Color.White, new List<Frame>());
+            ryu = new Ryu(Content.Load<Texture2D>("ryu"), new Vector2(400, 350), new Vector2(3), Color.White, new List<Frame>());
+            chunli = new Chun_LiStuff(Content.Load<Texture2D>("chun-li"), new Vector2(600, 350), new Vector2(3), Color.White, new List<Frame>());
+            mbison = new MBison(Content.Load<Texture2D>("mbison"), new Vector2(200, 350), new Vector2(3), Color.White, new List<Frame>());
             // TODO: use this.Content to load your game content here
         }
 
@@ -101,48 +101,185 @@ namespace Saiyuki_VS_Skywalker
 
 
             TheForce.Update(gameTime, Keyboard.GetState());
-            MonkeyDude.Update(gameTime, Keyboard.GetState());
-            Dumpling.Update(gameTime, Keyboard.GetState());
-            Buffalo.Update(gameTime, Keyboard.GetState());
+            ryu.Update(gameTime, Keyboard.GetState());
+            chunli.Update(gameTime, Keyboard.GetState());
+            mbison.Update(gameTime, Keyboard.GetState());
             base.Update(gameTime);
-        
-            if (Dumpling.punch == true)
+
+            // THIS IS CHUN LI ATTACK STUFF
+            if (chunli.punch == true)
             {
-                if (Dumpling.Hitbox.Intersects(MonkeyDude.Hitbox))
+                if (chunli.Hitbox.Intersects(ryu.Hitbox))
                 {
                     label.text = $"Ryu's Health: {count}";
                     count--;
                 }
-                else if (Dumpling.Hitbox.Intersects(Buffalo.Hitbox))
+                else if (chunli.Hitbox.Intersects(mbison.Hitbox))
                 {
                     label2.text = $"MBison's Health: {count2}";
                     count2--;
                 }
-            }          
-            if (Dumpling.regkick == true)
+            }
+            if (chunli.regkick == true)
             {
-                if (Dumpling.Hitbox.Intersects(MonkeyDude.Hitbox))
+                if (chunli.Hitbox.Intersects(ryu.Hitbox))
                 {
                     label.text = $"Ryu's Health: {count}";
-                    count = count -2;
+                    count = count - 2;
                 }
-                else if (Dumpling.Hitbox.Intersects(Buffalo.Hitbox))
+                else if (chunli.Hitbox.Intersects(mbison.Hitbox))
                 {
                     label2.text = $"MBison's Health: {count2}";
                     count2 = count2 - 2;
                 }
             }
-            if (Dumpling.spinkick == true)
+            if (chunli.spinkick == true)
             {
-                if (Dumpling.Hitbox.Intersects(MonkeyDude.Hitbox))
+                if (chunli.Hitbox.Intersects(ryu.Hitbox))
                 {
                     label.text = $"Ryu's Health: {count}";
                     count = count - 3;
                 }
-                else if (Dumpling.Hitbox.Intersects(Buffalo.Hitbox))
+                else if (chunli.Hitbox.Intersects(mbison.Hitbox))
                 {
-                    label2.text = $"MBison's Health: {count}";
+                    label2.text = $"MBison's Health: {count2}";
+                    count2 = count2 - 3;
+                }
+            }
+            if (chunli.jumpkick == true)
+            {
+                if (chunli.Hitbox.Intersects(ryu.Hitbox))
+                {
+                    label.text = $"Ryu's Health: {count}";
+                    count = count - 2;
+                }
+                else if (chunli.Hitbox.Intersects(mbison.Hitbox))
+                {
+                    label2.text = $"MBison's Health: {count2}";
+                    count2 = count2 - 2;
+                }
+            }
+            //END OF CHUN-LI ATTACK STUFF
+
+            //START OF RYU ATTACK STUFF
+
+            if (ryu.punch == true)
+            {
+                if (ryu.Hitbox.Intersects(mbison.Hitbox))
+                {
+                    label2.text = $"MBison's Health: {count2}";
+                    count2 = count2 - 3;
+                }
+                else if (ryu.Hitbox.Intersects(chunli.Hitbox))
+                {
+                    label3.text = $"Chun-li's Health: {chunli.health}";
+                    chunli.health = chunli.health - 3;
+                }
+            }
+            if (ryu.kick == true)
+            {
+                if (ryu.Hitbox.Intersects(mbison.Hitbox))
+                {
+                    label2.text = $"MBison's Health: {count2}";
+                    count2 = count2 - 2;
+                }
+                else if (ryu.Hitbox.Intersects(chunli.Hitbox))
+                {
+                    label3.text = $"Chun-li's Health: {count3}";
+                    count3 = count3 - 2;
+                }
+            }
+            if (ryu.jumppunch == true)
+            {
+                if (ryu.Hitbox.Intersects(mbison.Hitbox))
+                {
+                    label2.text = $"MBison's Health: {count2}";
+                    count2 = count2 - 3;
+                }
+                else if (ryu.Hitbox.Intersects(chunli.Hitbox))
+                {
+                    label3.text = $"Chun-li's Health: {count3}";
+                    count3 = count3 - 3;
+                }
+            }
+            if (ryu.jumpkick == true)
+            {
+                if (ryu.Hitbox.Intersects(mbison.Hitbox))
+                {
+                    label2.text = $"MBison's Health: {count2}";
+                    count2 = count2 - 2;                }
+                else if (ryu.Hitbox.Intersects(chunli.Hitbox))
+                {
+                    label3.text = $"Chun-li's Health: {count3}";
+                    count3 = count3 - 2;
+                }
+            }
+            //END OF RYU ATTACK STUFF
+
+            //START OF MBISON ATTACK STUFF
+            if (mbison.punch == true)
+            {
+                if (mbison.Hitbox.Intersects(chunli.Hitbox))
+                {
+                    label3.text = $"Chun-li's Health: {count3}";
+                    count3 = count3 - 2;
+                }
+                else if (mbison.Hitbox.Intersects(ryu.Hitbox))
+                {
+                    label.text = $"Ryu's Health: {count}";
+                    count = count - 2;
+                }
+            }
+            if (mbison.hardpunch == true)
+            {
+                if (mbison.Hitbox.Intersects(chunli.Hitbox))
+                {
+                    label3.text = $"Chun-li's Health: {count3}";
+                    count3 = count3 - 3;
+                }
+                else if (mbison.Hitbox.Intersects(ryu.Hitbox))
+                {
+                    label.text = $"Ryu's Health: {count}";
                     count = count - 3;
+                }
+            }
+            if (mbison.kick == true)
+            {
+                if (mbison.Hitbox.Intersects(chunli.Hitbox))
+                {
+                    label3.text = $"Chun-li's Health: {count3}";
+                    count3 = count3 - 2;
+                }
+                else if (mbison.Hitbox.Intersects(ryu.Hitbox))
+                {
+                    label.text = $"Ryu's Health: {count}";
+                    count = count - 3;
+                }
+            }
+            if (mbison.spinkick == true)
+            {
+                if (mbison.Hitbox.Intersects(chunli.Hitbox))
+                {
+                    label3.text = $"Chun-li's Health: {count3}";
+                    count3 = count3 - 4;
+                }
+                else if (mbison.Hitbox.Intersects(ryu.Hitbox))
+                {
+                    label.text = $"Ryu's Health: {count}";
+                    count = count - 4;
+                }
+            }
+            if (mbison.psychothingy == true)
+            {
+                if (mbison.Hitbox.Intersects(chunli.Hitbox))
+                {
+                    label3.text = $"Chun-li's Health: {count3}";
+                    count3 = count3 - 6;
+                }
+                if (mbison.Hitbox.Intersects(ryu.Hitbox))
+                {
+                    label.text = $"Ryu's Health: {count}";
+                    count = count - 6;
                 }
             }
         }
@@ -157,11 +294,12 @@ namespace Saiyuki_VS_Skywalker
             //GraphicsDevice.Clear(Color.OliveDrab);
             spriteBatch.Begin();
             TheForce.Draw(spriteBatch);
-            MonkeyDude.Draw(spriteBatch, pixel);
-            Dumpling.Draw(spriteBatch, pixel);
-            Buffalo.Draw(spriteBatch, pixel);
+            ryu.Draw(spriteBatch, pixel);
+            chunli.Draw(spriteBatch, pixel);
+            mbison.Draw(spriteBatch, pixel);
             label.Draw(spriteBatch);
             label2.Draw(spriteBatch);
+            label3.Draw(spriteBatch);
             spriteBatch.End();
             // TODO: Add your drawing code here
 
