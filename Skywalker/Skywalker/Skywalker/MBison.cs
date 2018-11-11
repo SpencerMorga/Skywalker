@@ -27,6 +27,8 @@ namespace Saiyuki_VS_Skywalker
         public bool kick;
         public bool spinkick;
         public bool psychothingy;
+        public int health = 450;
+        public bool block;
         bool Pastfloor
         {
             get { return position.Y + frames[currentframeIndex].frame.Height > Game1.Viewport3.Height - 14; }
@@ -195,6 +197,13 @@ namespace Saiyuki_VS_Skywalker
                 new Frame(new Rectangle(434, 464, 64, 28), new Vector2()),
             };
             animation5.Add(MBisonEnums.MBisonFrames.PsychoThingy, PsychoThingy);
+
+            List<Frame> Block = new List<Frame>()
+            {
+                new Frame(new Rectangle(1, 451, 43, 59), new Vector2()),
+            };
+            animation5.Add(MBisonEnums.MBisonFrames.Block, Block);
+            
         }
         public void Update(GameTime gtime, KeyboardState ks)
         {
@@ -218,6 +227,10 @@ namespace Saiyuki_VS_Skywalker
             if (psychothingy)
             {
                 currentframestate5 = MBisonEnums.MBisonFrames.PsychoThingy;
+            }
+            if (block)
+            {
+                currentframestate5 = MBisonEnums.MBisonFrames.Block;
             }
             if (isJumping)
             {
@@ -246,6 +259,7 @@ namespace Saiyuki_VS_Skywalker
                 hardpunch = false;
                 spinkick = false;
                 psychothingy = false;
+                block = false;
             }
             if (currentframestate5 == MBisonEnums.MBisonFrames.JumpPunch)
             {
@@ -358,6 +372,7 @@ namespace Saiyuki_VS_Skywalker
                 hardpunch = false;
                 spinkick = false;
                 psychothingy = false;
+                block = false;
             }
             ////////////////////////////////////////////////////////////////////
             if (currentframestate5 == MBisonEnums.MBisonFrames.Backward)
@@ -376,6 +391,20 @@ namespace Saiyuki_VS_Skywalker
                 hardpunch = false;
                 spinkick = false;
                 psychothingy = false;
+                block = false;
+            }
+            ////////////////////////////////////////////////////////////////////
+            if (currentframestate5 == MBisonEnums.MBisonFrames.Block)
+            {
+                if (currentframeIndex + 1 >= frames.Count)
+                {
+                    currentframestate5 = MBisonEnums.MBisonFrames.Stand;
+                }
+            }
+            if (ks.IsKeyDown(Keys.H))
+            {
+                currentframestate5 = MBisonEnums.MBisonFrames.Block;
+                block = true;
             }
             base.Update(gtime);
         }

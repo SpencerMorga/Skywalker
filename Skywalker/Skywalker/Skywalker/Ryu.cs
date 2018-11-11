@@ -35,11 +35,12 @@ namespace Saiyuki_VS_Skywalker
         public Vector2 Velocity { get { return velocity; } }
         bool isJumping = false;
         float gravity = 0.05f;
-        public int health = 10;
+        public int health = 400;
         public bool punch;
         public bool kick;
         public bool jumppunch;
         public bool jumpkick;
+        public bool block = false;
         bool Pastfloor
         {
             get { return position.Y + frames[currentframeIndex].frame.Height > Game1.Viewport2.Height - 16; }
@@ -140,7 +141,12 @@ namespace Saiyuki_VS_Skywalker
                 new Frame(new Rectangle(971 ,254, 50, 42), new Vector2()),
             };
             animation2.Add(SaiyukiEnums.SaiyukiFrames.JumpKick, jumpkick);
-            
+
+            List<Frame> block = new List<Frame>()
+            {
+                new Frame(new Rectangle(2, 460, 29, 59), new Vector2()),
+            };
+            animation2.Add(SaiyukiEnums.SaiyukiFrames.Block, block);
         }
 
         public void Update(GameTime gtime, KeyboardState ks)
@@ -163,6 +169,7 @@ namespace Saiyuki_VS_Skywalker
             {
                 currentframestate2 = SaiyukiEnums.SaiyukiFrames.JumpKick;
             }
+            if (block) currentframestate2 = SaiyukiEnums.SaiyukiFrames.Block;
             if (isJumping)
             {
                 velocity.Y -= gravity;
@@ -203,6 +210,7 @@ namespace Saiyuki_VS_Skywalker
                 kick = false;
                 jumpkick = false;
                 jumppunch = false;
+                block = false;
             }
 
             if (currentframestate2 == SaiyukiEnums.SaiyukiFrames.JumpKick)
@@ -261,6 +269,7 @@ namespace Saiyuki_VS_Skywalker
                 kick = false;
                 jumppunch = false;
                 jumpkick = false;
+                block = false;
             }
             
             //////////////////////////////////////////////////////////////////
@@ -279,9 +288,21 @@ namespace Saiyuki_VS_Skywalker
                 kick = false;
                 jumppunch = false;
                 jumpkick = false;
+                block = false;
             }
             //////////////////////////////////////////////////////////////////
-
+            if (currentframestate2 == SaiyukiEnums.SaiyukiFrames.Block)
+            {
+                if (currentframeIndex + 1 >= frames.Count)
+                {
+                    currentframestate2 = SaiyukiEnums.SaiyukiFrames.Stand;
+                }
+            }
+            if (ks.IsKeyDown(Keys.NumPad2))
+            {
+                currentframestate2 = SaiyukiEnums.SaiyukiFrames.Block;
+                block = true;
+            }
 
 
             base.Update(gtime);

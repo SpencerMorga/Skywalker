@@ -26,9 +26,7 @@ namespace Saiyuki_VS_Skywalker
         Ryu ryu;
         Chun_LiStuff chunli;
         MBison mbison;
-        int count = 400;
-        int count2 = 450;
-        int count3 = 400;
+        
         
         public static Viewport Viewport { get { return temp; } }
         public static Viewport Viewport2 { get { return temp; } }
@@ -111,52 +109,114 @@ namespace Saiyuki_VS_Skywalker
             {
                 if (chunli.Hitbox.Intersects(ryu.Hitbox))
                 {
-                    label.text = $"Ryu's Health: {count}";
-                    count--;
+                    label.text = $"Ryu's Health: {ryu.health}";
+                    if (ryu.block == true)
+                    {
+                        ryu.health = ryu.health + 0;
+                    }
+                    else
+                    {
+                        ryu.health--;
+                    }
+                    
                 }
                 else if (chunli.Hitbox.Intersects(mbison.Hitbox))
                 {
-                    label2.text = $"MBison's Health: {count2}";
-                    count2--;
+                    label2.text = $"MBison's Health: {mbison.health}";
+                    if (mbison.block == true)
+                    {
+                        mbison.health = mbison.health + 0;
+                    }
+                    else
+                    {
+                        mbison.health--;
+                    }
+
                 }
             }
             if (chunli.regkick == true)
             {
                 if (chunli.Hitbox.Intersects(ryu.Hitbox))
                 {
-                    label.text = $"Ryu's Health: {count}";
-                    count = count - 2;
+                    label.text = $"Ryu's Health: {ryu.health}";
+                    if (ryu.block == true)
+                    {
+                        ryu.health = ryu.health - 2;
+                    }
+                    else
+                    {
+                        ryu.health = ryu.health - 1;
+                    }
+
                 }
                 else if (chunli.Hitbox.Intersects(mbison.Hitbox))
                 {
-                    label2.text = $"MBison's Health: {count2}";
-                    count2 = count2 - 2;
+                    label2.text = $"MBison's Health: {mbison.health}";
+                    if (mbison.block == true)
+                    {
+                        mbison.health = mbison.health - 1;
+                    }
+                    else
+                    {
+                        mbison.health = mbison.health - 2;
+                    }
                 }
             }
             if (chunli.spinkick == true)
             {
                 if (chunli.Hitbox.Intersects(ryu.Hitbox))
                 {
-                    label.text = $"Ryu's Health: {count}";
-                    count = count - 3;
+                    label.text = $"Ryu's Health: {ryu.health}";
+                    if (ryu.block == true)
+                    {
+                        ryu.health = ryu.health - 1;
+                    }
+                    else
+                    {
+                        ryu.health = ryu.health - 3;
+                    }
+
                 }
                 else if (chunli.Hitbox.Intersects(mbison.Hitbox))
                 {
-                    label2.text = $"MBison's Health: {count2}";
-                    count2 = count2 - 3;
+                    label2.text = $"MBison's Health: {mbison.health}";
+                    if (mbison.block == true)
+                    {
+                        mbison.health = mbison.health - 1;
+                    }
+                    else
+                    {
+                        mbison.health = mbison.health - 3;
+                    }
+                   
                 }
             }
             if (chunli.jumpkick == true)
             {
                 if (chunli.Hitbox.Intersects(ryu.Hitbox))
                 {
-                    label.text = $"Ryu's Health: {count}";
-                    count = count - 2;
+                    label.text = $"Ryu's Health: {ryu.health}";
+                    if (ryu.block == true)
+                    {
+                        ryu.health = ryu.health - 1;
+                    }
+                    else
+                    {
+                        ryu.health = ryu.health - 2;
+                    }
+
                 }
                 else if (chunli.Hitbox.Intersects(mbison.Hitbox))
                 {
-                    label2.text = $"MBison's Health: {count2}";
-                    count2 = count2 - 2;
+                    label2.text = $"MBison's Health: {mbison.health}";
+                    if (mbison.block == true)
+                    {
+                        mbison.health = mbison.health - 1;
+                    }
+                    else
+                    {
+                        mbison.health = mbison.health - 2;
+                    }
                 }
             }
             //END OF CHUN-LI ATTACK STUFF
@@ -167,8 +227,57 @@ namespace Saiyuki_VS_Skywalker
             {
                 if (ryu.Hitbox.Intersects(mbison.Hitbox))
                 {
-                    label2.text = $"MBison's Health: {count2}";
-                    count2 = count2 - 3;
+                    label2.text = $"MBison's Health: {mbison.health}";
+                    if (mbison.block == true)
+                    {
+                        mbison.health = mbison.health - 2;
+                    }
+                    else
+                    {
+                        mbison.health = mbison.health - 3;
+                    }
+                }
+                else if (ryu.Hitbox.Intersects(chunli.Hitbox))
+                {
+                    label3.text = $"Chun-li's Health: {chunli.health}";
+                    if (chunli.block == true)
+                    {
+                        chunli.health = chunli.health - 1;
+                    }
+                    else
+                    {
+                        chunli.health = chunli.health - 3;
+                    }
+
+                }
+            }
+            if (ryu.kick == true)
+            {
+                if (ryu.Hitbox.Intersects(mbison.Hitbox))
+                {
+                    label2.text = $"MBison's Health: {mbison.health}";
+                    if (mbison.block ==  true)
+                    {
+                        mbison.health = mbison.health - 1;
+                    }
+                    else
+                    {
+                        mbison.health = mbison.health - 2;
+                    }
+
+                }
+                else if (ryu.Hitbox.Intersects(chunli.Hitbox))
+                {
+                    label3.text = $"Chun-li's Health: {chunli.health}";
+                    chunli.health = chunli.health - 2;
+                }
+            }
+            if (ryu.jumppunch == true)
+            {
+                if (ryu.Hitbox.Intersects(mbison.Hitbox))
+                {
+                    label2.text = $"MBison's Health: {mbison.health}";
+                    mbison.health = mbison.health - 3;
                 }
                 else if (ryu.Hitbox.Intersects(chunli.Hitbox))
                 {
@@ -176,42 +285,16 @@ namespace Saiyuki_VS_Skywalker
                     chunli.health = chunli.health - 3;
                 }
             }
-            if (ryu.kick == true)
-            {
-                if (ryu.Hitbox.Intersects(mbison.Hitbox))
-                {
-                    label2.text = $"MBison's Health: {count2}";
-                    count2 = count2 - 2;
-                }
-                else if (ryu.Hitbox.Intersects(chunli.Hitbox))
-                {
-                    label3.text = $"Chun-li's Health: {count3}";
-                    count3 = count3 - 2;
-                }
-            }
-            if (ryu.jumppunch == true)
-            {
-                if (ryu.Hitbox.Intersects(mbison.Hitbox))
-                {
-                    label2.text = $"MBison's Health: {count2}";
-                    count2 = count2 - 3;
-                }
-                else if (ryu.Hitbox.Intersects(chunli.Hitbox))
-                {
-                    label3.text = $"Chun-li's Health: {count3}";
-                    count3 = count3 - 3;
-                }
-            }
             if (ryu.jumpkick == true)
             {
                 if (ryu.Hitbox.Intersects(mbison.Hitbox))
                 {
-                    label2.text = $"MBison's Health: {count2}";
-                    count2 = count2 - 2;                }
+                    label2.text = $"MBison's Health: {mbison.health}";
+                    mbison.health = mbison.health - 2;                }
                 else if (ryu.Hitbox.Intersects(chunli.Hitbox))
                 {
-                    label3.text = $"Chun-li's Health: {count3}";
-                    count3 = count3 - 2;
+                    label3.text = $"Chun-li's Health: {chunli.health}";
+                    chunli.health = chunli.health - 2;
                 }
             }
             //END OF RYU ATTACK STUFF
@@ -221,65 +304,80 @@ namespace Saiyuki_VS_Skywalker
             {
                 if (mbison.Hitbox.Intersects(chunli.Hitbox))
                 {
-                    label3.text = $"Chun-li's Health: {count3}";
-                    count3 = count3 - 2;
+                    label3.text = $"Chun-li's Health: {chunli.health}";
+                    if (chunli.block == true)
+                    {
+                        chunli.health = chunli.health - 1;
+                    }
+                    else
+                    {
+                        chunli.health = chunli.health - 2;
+                    }
                 }
                 else if (mbison.Hitbox.Intersects(ryu.Hitbox))
                 {
-                    label.text = $"Ryu's Health: {count}";
-                    count = count - 2;
+                    label.text = $"Ryu's Health: {ryu.health}";
+
+                    if (ryu.block == true)
+                    {
+                        ryu.health = ryu.health - 1;
+                    }
+                    else
+                    {
+                        ryu.health = ryu.health - 2;
+                    }
                 }
             }
             if (mbison.hardpunch == true)
             {
                 if (mbison.Hitbox.Intersects(chunli.Hitbox))
                 {
-                    label3.text = $"Chun-li's Health: {count3}";
-                    count3 = count3 - 3;
+                    label3.text = $"Chun-li's Health: {chunli.health}";
+                    chunli.health = chunli.health - 3;
                 }
                 else if (mbison.Hitbox.Intersects(ryu.Hitbox))
                 {
-                    label.text = $"Ryu's Health: {count}";
-                    count = count - 3;
+                    label.text = $"Ryu's Health: {ryu.health}";
+                    ryu.health = ryu.health - 3;
                 }
             }
             if (mbison.kick == true)
             {
                 if (mbison.Hitbox.Intersects(chunli.Hitbox))
                 {
-                    label3.text = $"Chun-li's Health: {count3}";
-                    count3 = count3 - 2;
+                    label3.text = $"Chun-li's Health: {chunli.health}";
+                    chunli.health = chunli.health - 2;
                 }
                 else if (mbison.Hitbox.Intersects(ryu.Hitbox))
                 {
-                    label.text = $"Ryu's Health: {count}";
-                    count = count - 3;
+                    label.text = $"Ryu's Health: {ryu.health}";
+                    ryu.health = ryu.health - 3;
                 }
             }
             if (mbison.spinkick == true)
             {
                 if (mbison.Hitbox.Intersects(chunli.Hitbox))
                 {
-                    label3.text = $"Chun-li's Health: {count3}";
-                    count3 = count3 - 4;
+                    label3.text = $"Chun-li's Health: {chunli.health}";
+                    chunli.health = chunli.health - 4;
                 }
                 else if (mbison.Hitbox.Intersects(ryu.Hitbox))
                 {
-                    label.text = $"Ryu's Health: {count}";
-                    count = count - 4;
+                    label.text = $"Ryu's Health: {ryu.health}";
+                    ryu.health = ryu.health - 4;
                 }
             }
             if (mbison.psychothingy == true)
             {
                 if (mbison.Hitbox.Intersects(chunli.Hitbox))
                 {
-                    label3.text = $"Chun-li's Health: {count3}";
-                    count3 = count3 - 6;
+                    label3.text = $"Chun-li's Health: {chunli.health}";
+                    chunli.health = chunli.health - 6;
                 }
                 if (mbison.Hitbox.Intersects(ryu.Hitbox))
                 {
-                    label.text = $"Ryu's Health: {count}";
-                    count = count - 6;
+                    label.text = $"Ryu's Health: {ryu.health}";
+                    ryu.health = ryu.health - 6;
                 }
             }
         }

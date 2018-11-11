@@ -19,7 +19,8 @@ namespace Saiyuki_VS_Skywalker
             JumpPunch,
             PsychoThingy,
             FlipKick,
-            JumpKick
+            JumpKick,
+            Block
         }
 
     }

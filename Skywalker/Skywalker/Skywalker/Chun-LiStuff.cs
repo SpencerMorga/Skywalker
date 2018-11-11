@@ -35,6 +35,7 @@ namespace Saiyuki_VS_Skywalker
         public bool regkick = false;
         public bool spinkick = false;
         public bool jumpkick = false;
+        public bool block = false;
         public int health = 400;
         bool Pastfloor
         {
@@ -174,6 +175,11 @@ namespace Saiyuki_VS_Skywalker
             };
             animation3.Add(Chun_LiEnums.ChunLiFrames.Jump, jump);
 
+            List<Frame> block = new List<Frame>()
+            {
+                new Frame(new Rectangle(960, 454, 30, 49), new Vector2()),
+            };
+            animation3.Add(Chun_LiEnums.ChunLiFrames.Block, block);
         }
         public void Update(GameTime gtime, KeyboardState ks)
         {
@@ -194,7 +200,10 @@ namespace Saiyuki_VS_Skywalker
             {
                 currentframestate3 = Chun_LiEnums.ChunLiFrames.JumpKick;
             }
-
+            if (block)
+            {
+                currentframestate3 = Chun_LiEnums.ChunLiFrames.Block;
+            }
             if (currentframestate3 == Chun_LiEnums.ChunLiFrames.Punch2)
             {
                 if (currentframeIndex + 1 >= frames.Count)
@@ -239,6 +248,7 @@ namespace Saiyuki_VS_Skywalker
                 regkick = false;
                 spinkick = false;
                 jumpkick = false;
+                block = false;
             }
             ////////////////////////////////////////////////////////////////
             if (currentframestate3 == Chun_LiEnums.ChunLiFrames.JumpKick)
@@ -269,6 +279,7 @@ namespace Saiyuki_VS_Skywalker
                 regkick = false;
                 spinkick = false;
                 jumpkick = false;
+                block = false;
             }
             ////////////////////////////////////////////////////////////////
             if (isJumping)
@@ -297,7 +308,7 @@ namespace Saiyuki_VS_Skywalker
                 regkick = false;
                 jumpkick = false;
                 spinkick = false;
-
+                block = false;
 
             }
             ////////////////////////////////////////////////////////////////
@@ -313,6 +324,19 @@ namespace Saiyuki_VS_Skywalker
                 currentframestate3 = Chun_LiEnums.ChunLiFrames.SpinKick;
                 position.X -= speed.X;
                 spinkick = true;
+            }
+            ////////////////////////////////////////////////////////////////
+            if (currentframestate3 == Chun_LiEnums.ChunLiFrames.Block)
+            {
+                if (currentframeIndex + 1 >= frames.Count)
+                {
+                    currentframestate3 = Chun_LiEnums.ChunLiFrames.Stand;
+                }
+            }
+            if (ks.IsKeyDown(Keys.V))
+            {
+                currentframestate3 = Chun_LiEnums.ChunLiFrames.Block;
+                block = true;
             }
             base.Update(gtime);
         }
