@@ -29,6 +29,9 @@ namespace Saiyuki_VS_Skywalker
         public bool psychothingy;
         public int health = 450;
         public bool block;
+        public bool hithigh;
+        public bool crouch;
+        public bool crouchhit;
         bool Pastfloor
         {
             get { return position.Y + frames[currentframeIndex].frame.Height > Game1.Viewport3.Height - 14; }
@@ -203,7 +206,29 @@ namespace Saiyuki_VS_Skywalker
                 new Frame(new Rectangle(1, 451, 43, 59), new Vector2()),
             };
             animation5.Add(MBisonEnums.MBisonFrames.Block, Block);
-            
+
+            List<Frame> Crouch = new List<Frame>()
+            {
+                new Frame(new Rectangle(152, 145, 44, 49), new Vector2()),
+                new Frame(new Rectangle(199, 154, 45, 40), new Vector2()),
+            };
+            animation5.Add(MBisonEnums.MBisonFrames.Crouch, Crouch);
+
+            List<Frame> CrouchHit = new List<Frame>()
+            {
+                new Frame(new Rectangle(304, 360, 45, 51), new Vector2()),
+                new Frame(new Rectangle(351,353, 44, 58), new Vector2()),
+            };
+            animation5.Add(MBisonEnums.MBisonFrames.CrouchHit, CrouchHit);
+
+            List<Frame> HitHigh = new List<Frame>()
+            {
+                new Frame(new Rectangle(3, 348, 44, 63), new Vector2()),
+                new Frame(new Rectangle(49, 347, 44, 64), new Vector2()),
+                new Frame(new Rectangle(95, 348, 37, 63), new Vector2()),
+            };
+            animation5.Add(MBisonEnums.MBisonFrames.HitHigh, HitHigh);
+                
         }
         public void Update(GameTime gtime, KeyboardState ks)
         {
@@ -231,6 +256,18 @@ namespace Saiyuki_VS_Skywalker
             if (block)
             {
                 currentframestate5 = MBisonEnums.MBisonFrames.Block;
+            }
+            if (crouch)
+            {
+                currentframestate5 = MBisonEnums.MBisonFrames.Crouch;
+            }
+            if (hithigh)
+            {
+                currentframestate5 = MBisonEnums.MBisonFrames.HitHigh;
+            }
+            if (crouchhit)
+            {
+                currentframestate5 = MBisonEnums.MBisonFrames.CrouchHit;
             }
             if (isJumping)
             {
@@ -405,6 +442,18 @@ namespace Saiyuki_VS_Skywalker
             {
                 currentframestate5 = MBisonEnums.MBisonFrames.Block;
                 block = true;
+            }
+            ////////////////////////////////////////////////////////////////////
+            if (currentframestate5 == MBisonEnums.MBisonFrames.Crouch)
+            {
+                if (currentframeIndex + 1 >= frames.Count)
+                {
+                    currentframestate5 = MBisonEnums.MBisonFrames.Stand;
+                }
+            }
+            if (ks.IsKeyDown(Keys.OemComma))
+            {
+                currentframestate5 = MBisonEnums.MBisonFrames.Crouch;
             }
             base.Update(gtime);
         }

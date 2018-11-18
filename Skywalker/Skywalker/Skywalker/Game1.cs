@@ -83,11 +83,57 @@ namespace Saiyuki_VS_Skywalker
         /// UnloadContent will be called once per game and is the place to unload
         /// all content.
         /// </summary>
+        /// chun-li
+        /*
+        hit high
+620, 244, 31, 50
+580, 344, 34, 50
+545, 336, 35, 58
+
+crouch hit
+435, 354, 32, 40
+40, 255, 32, 39
+
+crouch
+572, 142, 32, 39
+
+	ryu
+
+hit high
+291, 347, 25, 60
+324, 350, 28, 57
+354, 343, 32, 64
+386, 351, 32, 56
+
+crouch hit
+534, 367, 28, 42
+565, 367, 30, 42
+
+crouch
+39, 13, 25 51
+436, 162, 27, 42
+377, 153, 25, 51
+406, 144, 23, 60
+
+	mbison
+
+hit high
+3, 348, 44, 63
+49, 347, 44, 64
+95, 348, 37, 63
+
+crouch hit
+304, 360, 45, 51
+351, 353, 44, 58
+
+crouch
+152, 145, 44, 49
+199, 154, 45, 40
+*/
         protected override void UnloadContent()
         {
             // TODO: Unload any non ContentManager content here
         }
-
         /// <summary>
         /// Allows the game to run logic such as updating the world,
         /// checking for collisions, gathering input, and playing audio.

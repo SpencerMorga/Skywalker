@@ -20,7 +20,10 @@ namespace Saiyuki_VS_Skywalker
             PsychoThingy,
             FlipKick,
             JumpKick,
-            Block
+            Block,
+            Crouch,
+            CrouchHit,
+            HitHigh
         }
 
     }
